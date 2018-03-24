@@ -251,6 +251,7 @@ Regex screenshot taken from the course, use https://pythex.org/ to test<br/>
     `from myfirstapp.models import Item`
   - swap out code for def index
 
+
 ```
   def index(request):
     return HttpResponse('<p>hello world<p/>')
