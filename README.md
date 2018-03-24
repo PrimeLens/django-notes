@@ -95,9 +95,11 @@ Adding the class in models.py doesn't create the table, to do that you need to u
 - do this from the top level above the app folder
 
 
+
     python manage.py migrate
 
 - runs all migration files that have not been run yet
+
 
 
     python manage.py migrate --list
