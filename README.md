@@ -87,47 +87,50 @@ class Item(models.Model):
 
 Adding the class in models.py doesn't create the table, to do that you need to use a migration. Migrations will add a model, add a field, remove a field or change the attributes of a field
 
-
-    python manage.py makemigrations
+```
+  python manage.py makemigrations
+```
 
 - generates migration files for later use, these are stored in the app folder example '/myfirstapp/0001_initial.py'
 - compares the current model fields against the current database tables
 - do this from the top level above the app folder
 
-
-
-    python manage.py migrate
+```
+  python manage.py migrate
+```
 
 - runs all migration files that have not been run yet
 
-
-
-    python manage.py migrate --list
+```
+  python manage.py migrate --list
+```
 
 - see all the migrations for different apps and which ones have been run (unapplied migrations is the name for those that havent run yet)
 
 
 ## View the data in sqlitebrowser
-- download from http://sqlitebrowser.org/ the way I did this was with 
-` brew cask install db-browser-for-sqlite`
+- download from http://sqlitebrowser.org/ the way I did this was with<br/> 
+  `brew cask install db-browser-for-sqlite`
 - run the new application DB Browser for SQlite, it should now be in your applications folder
 - use it to open the file `db.sqlite3` which is in the main proj folder (above the app folders)
 - you will see many tables but the one you want is named appname + underscore + tablename<br/>
-example: `myfirstapp_item`
+  example: `myfirstapp_item`
 
 ## Register the item model with django admin
 - open admin file in app folder `Project > App > admin.py` and then if your model class is called `Item` you would add 
 
-
-    from .models import Item
-    admin.site.register(Item)
+```
+  from .models import Item
+  admin.site.register(Item)
+```
 
 ## Create Super User for web interface login
 - user terminal to go to top level project folder, this is the folder with `manage.py` and run
 
-
-    python manage.py createsuperuser
-    # note: will prompt for username, email and password and its ok to leave email blank
+```
+  python manage.py createsuperuser
+  # note: will prompt for username, email and password and its ok to leave email blank
+```
 
 - then do `python manage.py runserver` and in the browser url put `http://localhost:8000/admin` then login
 - here you can add items to the DB table and view the rows, the row view is not helpful, see next section
@@ -137,11 +140,12 @@ example: `myfirstapp_item`
 
 - to make the row view more useful modify the lines from "Register the item model with django admin" so it looks like this
 
-
-    from .models import Item 
-    class ItemAdmin(admin.ModelAdmin):
-      list_display = ['title', 'description', 'weight']
-    admin.site.register(Item, ItemAdmin)
+```
+  from .models import Item 
+  class ItemAdmin(admin.ModelAdmin):
+    list_display = ['title', 'description', 'weight']
+  admin.site.register(Item, ItemAdmin)
+```
 
 <img src="./images/5.png" width="50%"/><br/>
 - click on the item to edit it, use the drop down to delete it
@@ -154,53 +158,59 @@ example: `myfirstapp_item`
 - user terminal, make sure you are in top level of project, type `python manage.py shell` and prompt will now look like `>>>`
 - from the `>>>` prompt type 
 
-
-    from myfirstapp.models import Item
-    #from <app_name>.models import <class_of_model>
+```
+  from myfirstapp.models import Item
+  #from <app_name>.models import <class_of_model>
+```
 
 - then try the following
 
-
-    Item.objects.all()
-    # [<Item: Item object>, <Item: Item object>, <Item: Item object>, <Item: Item object>]
-    itemsList = Item.objects.all()
-    item = itemsList[0]
-    item.title
-    item.description
-    item.id
+```
+  Item.objects.all()
+  # [<Item: Item object>, <Item: Item object>, <Item: Item object>, <Item: Item object>]
+  itemsList = Item.objects.all()
+  item = itemsList[0]
+  item.title
+  item.description
+  item.id
+```
 
 - using the getter
 
-
-    item = Item.objects.get(id=2)
-    itemList = Item.objects.filter(weight=2)   # all with weight 2
-    itemList = Item.objects.exclude(weight=2)  # all with weight not equal to 2
+```
+  item = Item.objects.get(id=2)
+  itemList = Item.objects.filter(weight=2)   # all with weight 2
+  itemList = Item.objects.exclude(weight=2)  # all with weight not equal to 2
+```
 
 ## Django serverside router (empty route)
 
 - open the djanog app folder that has the _same name_ as the project and open `urls.py` 
 - this is the default
 
-
-    urlpatterns = [
-      url(r'^admin/', include(admin.site.urls)),
-    ]
+```
+  urlpatterns = [
+    url(r'^admin/', include(admin.site.urls)),
+  ]
+```
 
 - we added a line
 
-
-    urlpatterns = [
-      # '^$' is regex for empty string see below
-      url(r'^$', views.index, name='index'),
-      url(r'^admin/', include(admin.site.urls)),
-    ]
+```
+  urlpatterns = [
+    # '^$' is regex for empty string see below
+    url(r'^$', views.index, name='index'),
+    url(r'^admin/', include(admin.site.urls)),
+  ]
+```
 
 - and most importantly we must go into project folder > app folder > `views.py` and added
 
-
-    from django.http import HttpResponse
-    def index(request):
-      return HttpResponse('<p>hello world<p/>')
+```
+  from django.http import HttpResponse
+  def index(request):
+    return HttpResponse('<p>hello world<p/>')
+```
 
 - http://localhost:8000/ now shows hello world
 
