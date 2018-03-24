@@ -65,6 +65,7 @@ class Item(models.Model):
   title = models.CharField(max_length=200)  # must have max_length
   description = models.TextField()   
   amount = models.IntegerField()            # -1, 0, 1, 20
+  amount = models.PositiveIntegerField()
   weight = models.DecimalField(decimal_places=2, max_digits=5)
                                             # 0.5, 3.14
   is_new = models.BooleanField()            # True, False
