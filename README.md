@@ -229,23 +229,21 @@ Regex screenshot taken from the course, use https://pythex.org/ to test<br/>
 - open the django app folder that has the _same name_ as the project and open `urls.py` 
 - add line
 
-
-      # define variable named id
-      url(r'^item/(?P<id>\d+)/', views.item_detail, name='item_detail'),
+```
+  # define variable named id
+  url(r'^item/(?P<id>\d+)/', views.item_detail, name='item_detail'),
+```
 
 - in project folder > app folder > `views.py` add the following
 
-
-    def item_detail(request, id):
-      return HttpResponse('<p>In item_detail view with id {0}</p>'.format(id))
+```
+  def item_detail(request, id):
+    return HttpResponse('<p>In item_detail view with id {0}</p>'.format(id))
+```
 
 - http://localhost:8000/item/1/ now shows 'In item_detail view with id 1'
 
-
-
-
 ## Connecting templates with dynamic data to the router
-
 
   - following from the above example, in project folder > app folder > `views.py` delete import for HttpResponse object as it is no longer needed
   - instead add `from django.http import Http404`
@@ -253,95 +251,100 @@ Regex screenshot taken from the course, use https://pythex.org/ to test<br/>
     `from myfirstapp.models import Item`
   - swap out code for def index
 
+```
+  def index(request):
+    return HttpResponse('<p>hello world<p/>')
 
-    def index(request):
-      return HttpResponse('<p>hello world<p/>')
+  # CHANGE TO THIS
 
-    # CHANGE TO THIS
-
-    def index(request):
-      items = Item.objects.exclude(amount=0)
-      return render(request, 'inventory/index.html', {
-        'items': items,     # note here var name is plural
-      })
+  def index(request):
+    items = Item.objects.exclude(amount=0)
+    return render(request, 'inventory/index.html', {
+      'items': items,     # note here var name is plural
+    })
+```
 
   - swap out code for def item_detail
 
+```
+  def item_detail(request, id):
+    return HttpResponse('<p>In item_detail view with id {0}</p>'.format(id))
 
-    def item_detail(request, id):
-      return HttpResponse('<p>In item_detail view with id {0}</p>'.format(id))
+  # CHANGE TO THIS
 
-    # CHANGE TO THIS
-
-    def item_detail(request, id):
-      try:
-        item = Item.objects.get(id=id)
-      except Item.DoesNotExist:
-        raise Http404('This item does not exist')
-      return render(request, 'inventory/item_detail.html', {
-        'item': item,     # note here var name is singular
-      })
+  def item_detail(request, id):
+    try:
+      item = Item.objects.get(id=id)
+    except Item.DoesNotExist:
+      raise Http404('This item does not exist')
+    return render(request, 'inventory/item_detail.html', {
+      'item': item,     # note here var name is singular
+    })
+```
 
   - open the django app folder that has the _same name_ as the project and open `settings.py` and look for the templates variable that looks like this `TEMPLATES = [{}]` and add in path to templates which in this tutorial is storing all templates in the _same name app_
 
-
-    TEMPLATES = [ 
-      { 
-        DIRS : ['djangomyproj/templates'] 
-      } 
-    ]
+```
+  TEMPLATES = [ 
+    { 
+      DIRS : ['djangomyproj/templates'] 
+    } 
+  ]
+```
 
   - You can then go to project folder > app folder with same name > templates and add 'index.html' and 'item_detail.html' each with just `<p>hello world</p>` if you want to see it running or use the next section to render dynamic data
 
 ## Template Tags
 
-    <h3>{{ headline_name }}</h3>
+```
+  <h3>{{ headline_name }}</h3>
 
-    {% for item in items %}
-      <p>{{  item.title }}</p>
-    {% endfor %}
+  {% for item in items %}
+    <p>{{  item.title }}</p>
+  {% endfor %}
 
-    # in the router file urls.py we specified name='index' and name='item_detail' this is useful in the 
-    # template but note if a url regex pattern has any name groups they will need to be included
-    <p>{% url 'index' %}</p>                      # url(r'^$', views.index, name='index')
-    <p>{% url 'item_detail' item.id %}</p>        # url(r'^item/(?P<id>\d+)/', views.item_detail, name='item_detail')
+  # in the router file urls.py we specified name='index' and name='item_detail' this is useful in the 
+  # template but note if a url regex pattern has any name groups they will need to be included
+  <p>{% url 'index' %}</p>                      # url(r'^$', views.index, name='index')
+  <p>{% url 'item_detail' item.id %}</p>        # url(r'^item/(?P<id>\d+)/', views.item_detail, name='item_detail')
 
-    # Filters can be used
-    <p>{{ item.name|capfirst }}</p>
+  # Filters can be used
+  <p>{{ item.name|capfirst }}</p>
 
-    # parent templates/base.html
-    <body>
-      {% block content %}
-      {% endblock content %}
-    </body>
-
-    # child templates/myfirstapp/index.html
-    {% extends "base.html" %}
+  # parent templates/base.html
+  <body>
     {% block content %}
-        <h3>Items in stock</h3>
-        <ul>
-          {% for item in items %}
-            <li>
-              <a href="{% url 'item_detail' item.id %}">
-                {{ item.title|capfirst }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-    {% endblock %}
+    {% endblock content %}
+  </body>
 
-    # child templates/myfirstapp/item_detail.html
-    {% extends "base.html" %}
-    {% block content %}
-      <a href="{% url 'index' %}">Back to item list</a>
-      <h3>{{ item.title|capfirst }}</h3>
-      <p> {{ item.amount }} currently in stock</p>
-      <h4>Description:</h4>
-      <p> {{ item.description }}</p>
-    {% endblock %}
+  # child templates/myfirstapp/index.html
+  {% extends "base.html" %}
+  {% block content %}
+      <h3>Items in stock</h3>
+      <ul>
+        {% for item in items %}
+          <li>
+            <a href="{% url 'item_detail' item.id %}">
+              {{ item.title|capfirst }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+  {% endblock %}
 
-    # for static assets look up docs to define ststic path in swttings.py
-    then in templates <link rel="stylesheet" href="{% static 'main.css' %}">
+  # child templates/myfirstapp/item_detail.html
+  {% extends "base.html" %}
+  {% block content %}
+    <a href="{% url 'index' %}">Back to item list</a>
+    <h3>{{ item.title|capfirst }}</h3>
+    <p> {{ item.amount }} currently in stock</p>
+    <h4>Description:</h4>
+    <p> {{ item.description }}</p>
+  {% endblock %}
+
+  # for static assets look up docs to define ststic path in swttings.py
+  then in templates <link rel="stylesheet" href="{% static 'main.css' %}">
+```
 
 <hr/>
 
