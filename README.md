@@ -58,7 +58,7 @@ We already edited a setting above to add myfirstapp app into the compile. If you
 - each app has a models.py define your classes in there
 - classes inherit from django.db.models
 
-In `/myforstapp/models.py` define the class like this
+In `/myfirstapp/models.py` define the class like this
 
 ```
 class Item(models.Model):
