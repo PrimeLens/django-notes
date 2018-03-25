@@ -18,8 +18,8 @@ django-admin startproject djangomyproj
 python mamage.py    runs the manage.py file and it displays a list of sub commands
 python mamage.py <subcommand>
 python manage.py runserver
-                    runs django subcommand, for example runserver starts a server at 127.0.0.1:8000 (localhost:8000)
-                    note this kicks an error prompting a migration but thats ok
+                    runs django subcommand, for example runserver _starts a server at 127.0.0.1:8000 (localhost:8000)
+                    note this kicks an error prompting a migration but thats ok_
 __init__.py         tells it that its a python module (often called the 'dunder' init)
 wsgi.py             used by webserver to run the proj (often called the 'wazgi' init)
 urls.py             is the config for serverside router
@@ -39,7 +39,7 @@ Django 'app' terminology. In the django world an 'app' is a folder with a set of
 python manage.py startapp myfirstapp
 ```
 
-Creates folder at this sublevel, but it is not yet included in the binary compile<br/>
+This creates a folder within the project, but it is not yet included in the binary compile<br/>
 <img src="./images/1.png" width="50%"/><br/>
 To include it open `djangomyproj/djangomyproj/settings.py` and scroll to `INSTALLED_APPS = (` and add myfirstapp like this<br/>
 <img src="./images/2.png" width="25%"/><br/>
@@ -139,7 +139,7 @@ Adding the class in models.py doesn't create the table, to do that you need to u
 ## Django out-of-the-box "List Display Page" is crap, lets fix it
 <img src="./images/4.png" width="50%"/><br/>
 
-- to make the row view more useful modify the lines from "Register the item model with django admin" so it looks like this
+- to make the row view more useful modify the lines from `Project > App > admin.py` so it looks like this
 
 ```
   from .models import Item 
