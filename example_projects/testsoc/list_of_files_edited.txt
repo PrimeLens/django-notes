@@ -1,0 +1,16 @@
+
+
+Working example
+
+1) Project was initialized as 'testsoc'
+
+2) An app called 'streams' was created inside the project
+
+Here is a list of path/files that were then edited
+
+testsoc/testsoc/settings.py
+testsoc/testsoc/urls.py
+testsoc/streams/views.py
+testsoc/streams/models.py
+testsoc/streams/admin.py
+testsoc/streams/templates/index.html
