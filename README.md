@@ -293,7 +293,8 @@ Regex screenshot taken from the course, use https://pythex.org/ to test<br/>
 
   - open the django app folder that has the _same name_ as the project and open `settings.py` and look for the templates variable that looks like this `TEMPLATES = [{}]` and add in path to templates which in this tutorial is storing all templates in the _same name app_.  I know this is confusing and stupid but the settings.py file in the lower level app is using a relative path fom the project folder root so think of it like<br/>
   `'djangomyproj/djangomyproj/templates'` or <br/>
-  `'djangomyproj/djangomyproj/templates'`
+  `'./djangomyproj/templates'`<br/>
+  but the way django wants it written is
 
 ```
   TEMPLATES = [ 
