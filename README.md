@@ -17,9 +17,12 @@ django-admin startproject djangomyproj
                     starts a project called 'djangomyproj', cd into it
 python mamage.py    runs the manage.py file and it displays a list of sub commands
 python mamage.py <subcommand>
-python manage.py runserver
-                    runs django subcommand, for example runserver _starts a server at 127.0.0.1:8000 (localhost:8000)
-                    note this kicks an error prompting a migration but thats ok_
+                    runs django subcommand, for example runserver 
+```
+
+`python manage.py runserver` will start a server at 127.0.0.1:8000 (localhost:8000) and this will work immediately after creating a project _but it kicks an error prompting a migration but thats ok_
+
+```
 __init__.py         tells it that its a python module (often called the 'dunder' init)
 wsgi.py             used by webserver to run the proj (often called the 'wazgi' init)
 urls.py             is the config for serverside router
