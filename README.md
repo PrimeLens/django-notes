@@ -77,6 +77,7 @@ class Item(models.Model):
   url = models.URLField()                   # www.google.com
   docs = models.FileField()                 # user_uploaded.doc
   pic = models.ImageField()                 # best_avatar.jpg
+  owner_id = models.PositiveIntegerField(default=0)
 ```
 
 ```
@@ -198,9 +199,12 @@ Adding the class in models.py doesn't create the table, to do that you need to u
   ]
 ```
 
-- we added a line
+- we added a line for the url and a line to import the views from the app we created
 
 ```
+  # import views from the app we created
+  from myfirstapp import views 
+
   urlpatterns = [
     # '^$' is regex for empty string see below
     url(r'^$', views.index, name='index'),
