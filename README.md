@@ -1,4 +1,4 @@
-# MY NOTES ON DJANGO
+# MY NOTES ON DJANGO 1.8 python 2.7
 
 Taken from Up & Running with Django by Caleb Smith
 
