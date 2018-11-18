@@ -33,6 +33,7 @@ Within the virtual env you can do the following (indented to show we are in the 
   django-admin startproject djangomyproj
                                starts a project called 'djangomyproj'
                                you now have manage.py and a folder called 'djangomyproj'
+                               dont forget within djangomyproj is another folder called djangomyproj becuz django(lol)
   python mamage.py             runs the manage.py file and it displays a list of sub commands
   python mamage.py <subcommand>
                                runs django subcommand, for example runserver 
