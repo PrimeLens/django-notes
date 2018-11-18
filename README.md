@@ -26,7 +26,7 @@ deactivate                     Do this in project folder / bin
 source bin/activate            Or do this in project folder
 
 Within the virtual env you can do the following (indented to show we are in the virtualenv shell)
-  pip install django==1.11
+  pip install django==1.11.16
   django-admin --version       to check django is installed
   mkdir src                    this is important because startproject creates a /bin which overwrite the one made by vitualenv
   cd src                        
