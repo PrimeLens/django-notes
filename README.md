@@ -30,8 +30,8 @@ Within the virtual env you can do the following (indented to show we are in the 
   django-admin --version       to check django is installed
   mkdir src                    this is important because startproject creates a /bin which overwrite the one made by vitualenv
   cd src                        
-  django-admin startproject djangomyproj
-                               starts a project called 'djangomyproj'
+  django-admin startproject djangomyproj .
+                               make sure you have the . in the above command, this starts a project called 'djangomyproj'
                                you now have manage.py and a folder called 'djangomyproj'
                                dont forget within djangomyproj is another folder called djangomyproj becuz django(lol)
   python mamage.py             runs the manage.py file and it displays a list of sub commands
