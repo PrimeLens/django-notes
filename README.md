@@ -1,22 +1,35 @@
-# MY NOTES ON DJANGO 1.8 python 2.7
+# CURRENTLY UPGRADING NOTES TO DJANGO 1.11 PYTHON 3.6 (was django 1.8 python 2.7)
+1.11 taken from udemy django ecommerce
+1.8 taken from Up & Running with Django by Caleb Smith
 
-Taken from Up & Running with Django by Caleb Smith
+Install Python 3.6, Virtualenv, & Django on Mac [link](https://www.codingforentrepreneurs.com/blog/install-django-on-mac-or-linux/)
+Python resources [link](https://github.com/codingforentrepreneurs)
 
 ## Basics
 
 
 ```
-pip --version       python installer packages,  to get the version of pip
-pip.pypa.io         to install pip, select 'install pip', then click link that says get-pip.py
-                    it will display script on screen which you need to save and run in terminal with sudo
-sudo pip install django==1.8
-                    installs django 1.8
-django-admin -- version
-                    to check django is installed
-django-admin startproject djangomyproj
+brew install python            installed python 3
+brew install python@2          installed python 2.7
+python3 -V                     get version
+pip --version                  python installer packages,  to get the version of pip
+pip3 --version
+pip3 install <package>
+sudo pip install virtualenv    virtual within the confines of a directory
+virtualenv --version
+
+virtualenv -p python3 .        Do this in the project folder,  sets up python3 for that project
+source activate                Do this in project folder / bin. to activate shell
+deactivate                     Do this in project folder / bin
+source bin/activate.           Or do this in project folder
+
+Within the virtual env you can do the following
+  pip install django==1.11
+  django-admin --version        to check django is installed
+  django-admin startproject djangomyproj
                     starts a project called 'djangomyproj', cd into it
-python mamage.py    runs the manage.py file and it displays a list of sub commands
-python mamage.py <subcommand>
+  python mamage.py    runs the manage.py file and it displays a list of sub commands
+  python mamage.py <subcommand>
                     runs django subcommand, for example runserver 
 ```
 
@@ -364,7 +377,6 @@ Regex screenshot taken from the course, use https://pythex.org/ to test<br/>
 ### Additional:
 
 Taken from Advanced Django by Kevin Veroneau and Matthew Nuzum 
-
 Uses python 2.7 and django 1.8
 
 what is middleware?
