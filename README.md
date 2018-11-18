@@ -18,19 +18,24 @@ pip3 --version
 pip3 install <package>
 sudo pip install virtualenv    this is virtual within the confines of a directory
 virtualenv --version
+
+PROJECT SETUP
 virtualenv -p python3 .        Do this in the project folder,  sets up python3 for that project
 source activate                Do this in project folder / bin (to activate shell and prompt will change)
 deactivate                     Do this in project folder / bin
-source bin/activate.           Or do this in project folder
+source bin/activate            Or do this in project folder
 
 Within the virtual env you can do the following (indented to show we are in the virtualenv shell)
   pip install django==1.11
-  django-admin --version        to check django is installed
+  django-admin --version       to check django is installed
+  mkdir src                    this is important because startproject creates a /bin which overwrite the one made by vitualenv
+  cd src                        
   django-admin startproject djangomyproj
-                    starts a project called 'djangomyproj', cd into it
-  python mamage.py    runs the manage.py file and it displays a list of sub commands
+                               starts a project called 'djangomyproj'
+                               you now have manage.py and a folder called 'djangomyproj'
+  python mamage.py             runs the manage.py file and it displays a list of sub commands
   python mamage.py <subcommand>
-                    runs django subcommand, for example runserver 
+                               runs django subcommand, for example runserver 
 ```
 
 `python manage.py runserver` will start a server at 127.0.0.1:8000 (localhost:8000) and this will work immediately after creating a project _but it kicks an error prompting a migration but thats ok_
