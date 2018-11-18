@@ -1,4 +1,5 @@
-# CURRENTLY UPGRADING NOTES TO DJANGO 1.11 PYTHON 3.6 (was django 1.8 python 2.7)
+# CURRENTLY UPGRADING 
+# Notes to Django 1.11 Python 3.6 (was django 1.8 python 2.7)
 1.11 taken from udemy django ecommerce
 1.8 taken from Up & Running with Django by Caleb Smith
 
@@ -9,21 +10,20 @@ Python resources [link](https://github.com/codingforentrepreneurs)
 
 
 ```
-brew install python            installed python 3
-brew install python@2          installed python 2.7
-python3 -V                     get version
-pip --version                  python installer packages,  to get the version of pip
+brew install python            installs python 3
+brew install python@2          installs python 2.7
+python3 -V                     gets version
+pip --version                  python installer of packages,  to get the version of pip
 pip3 --version
 pip3 install <package>
-sudo pip install virtualenv    virtual within the confines of a directory
+sudo pip install virtualenv    this is virtual within the confines of a directory
 virtualenv --version
-
 virtualenv -p python3 .        Do this in the project folder,  sets up python3 for that project
-source activate                Do this in project folder / bin. to activate shell
+source activate                Do this in project folder / bin (to activate shell and prompt will change)
 deactivate                     Do this in project folder / bin
 source bin/activate.           Or do this in project folder
 
-Within the virtual env you can do the following
+Within the virtual env you can do the following (indented to show we are in the virtualenv shell)
   pip install django==1.11
   django-admin --version        to check django is installed
   django-admin startproject djangomyproj
