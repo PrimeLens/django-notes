@@ -66,7 +66,7 @@ python manage.py startapp myfirstapp
 
 This creates a folder within the project, but it is not yet included in the binary compile<br/>
 <img src="./images/1.png" width="50%"/><br/>
-To include it open `djangomyproj/djangomyproj/settings.py` and scroll to `INSTALLED_APPS = [` and add myfirstapp like this (not its a square bracket in django 1.11 where it was a curved parenthesis in 1.8)<br/>
+To include it open `djangomyproj/djangomyproj/settings.py` and scroll to `INSTALLED_APPS = [` and add myfirstapp like this, note its a square bracket in django 1.11 where it was a curved parenthesis in 1.8<br/>
 <img src="./images/2.png" width="25%"/><br/>
 
 To rename an app there are two places to change.
