@@ -12,6 +12,10 @@ Python resources [link](https://github.com/codingforentrepreneurs)
 ```
 brew install python            installs python 3
 brew install python@2          installs python 2.7
+                               its hard to get homebrew to install older versions,
+                               for django 1.11 we need 3.6.7 because later versions like 3.7 will crash it
+                               so instead go here and use the macOS 64bit installer to get python 3.6.7
+                               https://www.python.org/downloads/release/python-367rc2/
 python3 -V                     gets version
 pip --version                  python installer of packages,  to get the version of pip
 pip3 --version
@@ -20,7 +24,7 @@ sudo pip install virtualenv    this is virtual within the confines of a director
 virtualenv --version
 
 PROJECT SETUP
-virtualenv -p python3 .        Do this in the project folder,  sets up python3 for that project
+virtualenv -p python3.6 .      Do this in the project folder,  sets up python3 for that project
 source activate                Do this in project folder / bin (to activate shell and prompt will change)
 deactivate                     Do this in project folder / bin
 source bin/activate            Or do this in project folder
