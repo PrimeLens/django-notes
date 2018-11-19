@@ -69,10 +69,6 @@ This creates a folder within the project, but it is not yet included in the bina
 To include it open `djangomyproj/djangomyproj/settings.py` and scroll to `INSTALLED_APPS = [` and add myfirstapp like this, note its a square bracket in django 1.11 where it was a curved parenthesis in 1.8<br/>
 <img src="./images/2.png" width="25%"/><br/>
 
-To rename an app there are two places to change.
-- the name of the folder 'myfirstapp'
-- in the settings.py the above line 40 'myfirstapp'
-
 ## The django docs for settings
 
 Find them by going to djangoproject.com click top nav link for documentation, scroll a third of the way down page to subheading The Development Process and under it are some bullets, the first bullet is called Settings and click the Overview link next to it<br/>
