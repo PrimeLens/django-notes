@@ -125,7 +125,7 @@ Adding the class in models.py doesn't create the table, to do that you need to u
 - runs all migration files that have not been run yet
 
 ```
-  python manage.py migrate --list
+  python manage.py showmigrations
 ```
 
 - see all the migrations for different apps and which ones have been run (unapplied migrations is the name for those that havent run yet)
