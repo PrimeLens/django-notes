@@ -228,7 +228,7 @@ Adding the class in models.py doesn't create the table, to do that you need to u
   urlpatterns = [
     # '^$' is regex for empty string see below
     url(r'^$', views.index, name='index'),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
   ]
 ```
 
