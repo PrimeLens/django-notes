@@ -215,7 +215,7 @@ Adding the class in models.py doesn't create the table, to do that you need to u
 
 ```
   urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
   ]
 ```
 
