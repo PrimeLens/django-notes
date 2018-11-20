@@ -206,6 +206,8 @@ Adding the class in models.py doesn't create the table, to do that you need to u
   itemList = Item.objects.exclude(weight=2)  # all with weight not equal to 2
 ```
 
+- exit `>>>` with `exit()`
+
 ## Django serverside router (empty route)
 
 - open the django app folder that has the _same name_ as the project and open `urls.py` 
