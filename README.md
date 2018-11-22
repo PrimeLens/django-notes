@@ -291,60 +291,14 @@ urlpatterns = [
 ]
 ```
 - templates > home_page.html should contain `<p>{{message}}</p>`
-
-# BELOW IS WORK IN PROGRESS
-
-## Template Tags
+- there are ways to loop within the template and filter etc using pipe `|`
 
 ```
-  <h3>{{ headline_name }}</h3>
-
   {% for item in items %}
     <p>{{  item.title }}</p>
   {% endfor %}
-
-  # in the router file urls.py we specified name='index' and name='item_detail' this is useful in the 
-  # template but note if a url regex pattern has any name groups they will need to be included
-  <p>{% url 'index' %}</p>                      # url(r'^$', views.index, name='index')
-  <p>{% url 'item_detail' item.id %}</p>        # url(r'^item/(?P<id>\d+)/', views.item_detail, name='item_detail')
-
-  # Filters can be used
-  <p>{{ item.name|capfirst }}</p>
-
-  # parent templates/base.html
-  <body>
-    {% block content %}
-    {% endblock content %}
-  </body>
-
-  # child templates/myfirstapp/index.html
-  {% extends "base.html" %}
-  {% block content %}
-      <h3>Items in stock</h3>
-      <ul>
-        {% for item in items %}
-          <li>
-            <a href="{% url 'item_detail' item.id %}">
-              {{ item.title|capfirst }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-  {% endblock %}
-
-  # child templates/myfirstapp/item_detail.html
-  {% extends "base.html" %}
-  {% block content %}
-    <a href="{% url 'index' %}">Back to item list</a>
-    <h3>{{ item.title|capfirst }}</h3>
-    <p> {{ item.amount }} currently in stock</p>
-    <h4>Description:</h4>
-    <p> {{ item.description }}</p>
-  {% endblock %}
-
-  # for static assets look up docs to define ststic path in swttings.py
-  then in templates <link rel="stylesheet" href="{% static 'main.css' %}">
 ```
+
 
 <hr/>
 
