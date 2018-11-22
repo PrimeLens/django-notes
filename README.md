@@ -50,6 +50,9 @@ wsgi.py             used by webserver to run the proj (often called the 'wazgi' 
 urls.py             is the config for serverside router
 ```
 
+## PEP8 basics
+- four space indent
+
 ## Django Apps within a Django project
 Django 'app' terminology. In the django world an 'app' is a folder with a set of related python files in it, more like a component. A Django project can have multiple apps within it. Each app tends to have a specific purpose for example blog app or forum app and they have a certain structure within their app folder
   - `models.py`         defines data layer (structure of DB tables and how they are queried)
@@ -252,14 +255,16 @@ Regex screenshot taken from the course, use https://pythex.org/ to test<br/>
 6th - this is how to match an empty string<br/>
 
 
-## Django serverside router (define and pass variable)
+## Connecting templates with dynamic data to the router
 
-- open the django app folder that has the _same name_ as the project and open `urls.py` 
-- add line
+- open the django app folder that has the _same name_ as the project and open `settings.py` and change DIRS 
 
 ```
-  # define variable named id
-  url(r'^item/(?P<id>\d+)/', views.item_detail, name='item_detail'),
+TEMPLATES = [
+    {
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+    }
+]
 ```
 
 - in project folder > app folder > `views.py` add the following
@@ -271,7 +276,7 @@ Regex screenshot taken from the course, use https://pythex.org/ to test<br/>
 
 - http://localhost:8000/item/1/ now shows 'In item_detail view with id 1'
 
-## Connecting templates with dynamic data to the router
+WORK IN PROGRESS
 
   - following from the above example, in project folder > app folder > `views.py` delete import for HttpResponse object as it is no longer needed
   - instead add `from django.http import Http404`
