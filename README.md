@@ -267,69 +267,29 @@ TEMPLATES = [
 ]
 ```
 
-- in project folder > app folder > `views.py` add the following
+- in project folder (same level as manage.py) `mkdir templates` and place some html called `home_page.html`
+- in project folder > app folder > `views.py` 
 
 ```
-  def item_detail(request, id):
-    return HttpResponse('<p>In item_detail view with id {0}</p>'.format(id))
+from django.shortcuts import render
+def home_page(request):
+    return render(request, "home_page.html", {})
 ```
 
-- http://localhost:8000/item/1/ now shows 'In item_detail view with id 1'
-
-WORK IN PROGRESS
-
-  - following from the above example, in project folder > app folder > `views.py` delete import for HttpResponse object as it is no longer needed
-  - instead add `from django.http import Http404`
-  - and add the item model from myfirstapp.models so we can use it to query the DB <br/>
-    `from myfirstapp.models import Item`
-  - swap out code for def index
-
+- in project folder > same name folder > `urls.py` 
 
 ```
-  def index(request):
-    return HttpResponse('<p>hello world<p/>')
+from django.conf.urls import url
+from django.contrib import admin
+from myfirstapp import views
 
-  # CHANGE TO THIS
-
-  def index(request):
-    items = Item.objects.exclude(amount=0)
-    return render(request, 'inventory/index.html', {
-      'items': items,     # note here var name is plural
-    })
+urlpatterns = [
+    url(r'^$', views.home_page),
+    url(r'^admin/', admin.site.urls),
+]
 ```
 
-  - swap out code for def item_detail
-
-```
-  def item_detail(request, id):
-    return HttpResponse('<p>In item_detail view with id {0}</p>'.format(id))
-
-  # CHANGE TO THIS
-
-  def item_detail(request, id):
-    try:
-      item = Item.objects.get(id=id)
-    except Item.DoesNotExist:
-      raise Http404('This item does not exist')
-    return render(request, 'inventory/item_detail.html', {
-      'item': item,     # note here var name is singular
-    })
-```
-
-  - open the django app folder that has the _same name_ as the project and open `settings.py` and look for the templates variable that looks like this `TEMPLATES = [{}]` and add in path to templates which in this tutorial is storing all templates in the _same name app_.  I know this is confusing and stupid but the settings.py file in the lower level app is using a relative path fom the project folder root so think of it like<br/>
-  `'djangomyproj/djangomyproj/templates'` or <br/>
-  `'./djangomyproj/templates'`<br/>
-  but the way django wants it written is
-
-```
-  TEMPLATES = [ 
-    { 
-      DIRS : ['djangomyproj/templates'] 
-    } 
-  ]
-```
-
-  - You can then go to project folder > app folder with same name > templates and add 'index.html' and 'item_detail.html' each with just `<p>hello world</p>` if you want to see it running or use the next section to render dynamic data
+# BELOW IS WORK IN PROGRESS
 
 ## Template Tags
 
