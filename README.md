@@ -273,7 +273,10 @@ TEMPLATES = [
 ```
 from django.shortcuts import render
 def home_page(request):
-    return render(request, "home_page.html", {})
+    data = {
+      "message" : "I need to go to the corner store"
+    }
+    return render(request, "home_page.html", data)
 ```
 
 - in project folder > same name folder > `urls.py` 
@@ -282,12 +285,12 @@ def home_page(request):
 from django.conf.urls import url
 from django.contrib import admin
 from myfirstapp import views
-
 urlpatterns = [
     url(r'^$', views.home_page),
     url(r'^admin/', admin.site.urls),
 ]
 ```
+- templates > home_page.html should contain `<p>{{message}}</p>`
 
 # BELOW IS WORK IN PROGRESS
 
