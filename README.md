@@ -52,7 +52,15 @@ urls.py             is the config for serverside router
 
 ## GIT
 
-git should be from within the `src` folder and take .gitignore from [here](https://gist.github.com/LondonAppDev/66c3291e4f487ac92fcc96735e44c35e)
+git should be from within the `src` folder and take .gitignore from [here](https://gist.github.com/LondonAppDev/66c3291e4f487ac92fcc96735e44c35e) but add
+
+```
+# OSX
+.idea
+.DS_Store
+*.DS_Store
+**/.DS_Store
+```
 
 ## PEP8 basics
 - four space indent
