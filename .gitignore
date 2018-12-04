@@ -1,5 +1,12 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+# OSX
+.idea
+.DS_Store
+*.DS_Store
+**/.DS_Store
+
+
 # dependencies
 /node_modules
 

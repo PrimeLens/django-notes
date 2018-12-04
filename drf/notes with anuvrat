@@ -1,0 +1,14 @@
+
+
+views.py
+- from . import models
+- from rest_framework.exceptions import APIException
+- adding class ProfileView
+
+
+serializers.py
+- from . import models
+- adding class ProfileSerializer
+
+urls.py
+- added the new view to a url

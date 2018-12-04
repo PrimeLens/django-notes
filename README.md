@@ -1,9 +1,9 @@
-# CURRENTLY UPGRADING 
-# Notes to Django 1.11 Python 3.6 (was django 1.8 python 2.7)
-1.11 taken from udemy django ecommerce
+
+# Notes to Django 1.11 Python 3.6
+1.11 taken from udemy django ecommerce<br/>
 1.8 taken from Up & Running with Django by Caleb Smith
 
-Install Python 3.6, Virtualenv, & Django on Mac [link](https://www.codingforentrepreneurs.com/blog/install-django-on-mac-or-linux/)
+Install Python 3.6, Virtualenv, & Django on Mac [link](https://www.codingforentrepreneurs.com/blog/install-django-on-mac-or-linux/)<br/>
 Python resources [link](https://github.com/codingforentrepreneurs)
 
 ## Basics
@@ -49,6 +49,10 @@ __init__.py         tells it that its a python module (often called the 'dunder'
 wsgi.py             used by webserver to run the proj (often called the 'wazgi' init)
 urls.py             is the config for serverside router
 ```
+
+## GIT
+
+git should be from within the `src` folder and take .gitignore from [here](https://gist.github.com/LondonAppDev/66c3291e4f487ac92fcc96735e44c35e)
 
 ## PEP8 basics
 - four space indent
@@ -112,6 +116,8 @@ class Item(models.Model):
 ## Migrations
 
 Adding the class in models.py doesn't create the table, to do that you need to use a migration. Migrations will add a model, add a field, remove a field or change the attributes of a field
+Migrations work by _taking a look at the current state of the DB and current state of our models and seeing what the differences are_, django manages all the changes to our DB on our behalf.
+As a side note the migrartions files are readable with the IDE
 
 ```
   python manage.py makemigrations
@@ -302,22 +308,16 @@ urlpatterns = [
 
 <hr/>
 
+### Further:
+- [python 101 crash course](./python3basics.md)
+- [django rest framework](./drf/DRF.md)
 
 ### Additional:
-
-Taken from Advanced Django by Kevin Veroneau and Matthew Nuzum 
-Uses python 2.7 and django 1.8
+Originally taken from Advanced Django by Kevin Veroneau and Matthew Nuzum (uses python 2.7 and django 1.8)<br/>
+Then adapted for django 1.11 and python 3.6
 
 what is middleware?
 I like the definition from Matthew Nazum (lynda) he says "middleware is code that hooks into the request response cycle of a page view" and he said this in Advanced Django course
 
-Standard as of Oct 2017
-  - Django 1.11 is the standard, it uses python 2.7,  it is the last django to use 2.7
-  - in Dec 2017 Django 2 will be released that uses python 3 and it will most likely be a rough start
-
-django 1.11 docs on auth
-https://docs.djangoproject.com/en/1.11/topics/auth/default/
-
-tastypie  is what is referenced in Advanced Django course and its github claims support with 1.11 also it has high user traction,  it might be good until django 2.0 comes out
 
 
