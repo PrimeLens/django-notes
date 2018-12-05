@@ -14,7 +14,7 @@ brew install python            installs python 3
 brew install python@2          installs python 2.7
                                for django 1.11 (long term support) we need python 3.6.7 
                                later python versions like 3.7 will crash django 1.11
-                               if had trouble getting brew to install older python versions so
+                               I had trouble getting brew to install older python versions so
                                go here and use the macOS 64bit installer to get python 3.6.7
                                https://www.python.org/downloads/release/python-367rc2/
 python3 -V                     gets version
