@@ -100,28 +100,34 @@ In `/myfirstapp/models.py` define the class like this
 
 ```
 class Item(models.Model):
-  title = models.CharField(max_length=200)  # must have max_length
-  description = models.TextField()   
-  amount = models.IntegerField()            # -1, 0, 1, 20
-  amount = models.PositiveIntegerField()
-  weight = models.DecimalField(decimal_places=2, max_digits=5)
-                                            # 0.5, 3.14
-  is_new = models.BooleanField()            # True, False
-  date_sold = models.DateTimeField()        #   
-  email = models.EmailField()               # george@email.com
-  url = models.URLField()                   # www.google.com
-  docs = models.FileField()                 # user_uploaded.doc
-  pic = models.ImageField()                 # best_avatar.jpg
-  owner_id = models.PositiveIntegerField(default=0)
+    # CharField must have max_length
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    # -1, 0, 1, 20
+    amount = models.IntegerField(blank=True)
+    amount = models.PositiveIntegerField(blank=True)
+    # 0.5, 3.14
+    weight = models.DecimalField(decimal_places=2, max_digits=5, blank=True)
 ```
 
 ```
-  title = models.CharField(max_length=10, null=True, blank=True)
-  # null is an accepted value that can be stored
-  # blank means an empty string is accepted
-  # default sets a default
-  # choices can set delimeters or guard rails on the values
+    title = models.CharField(max_length=10, null=True, blank=True)
+    # null is an accepted value that can be stored
+    # blank means an empty string is accepted
+    # default sets a default
+    # choices can set delimeters or guard rails on the values
 ```
+
+```
+    is_new = models.BooleanField()            # True, False
+    date_sold = models.DateTimeField()        #   
+    email = models.EmailField()               # george@email.com
+    url = models.URLField()                   # www.google.com
+    docs = models.FileField()                 # user_uploaded.doc
+    pic = models.ImageField()                 # best_avatar.jpg
+    owner_id = models.PositiveIntegerField(default=0)
+```
+
 
 ## If moving on to DRF notes then...
 
