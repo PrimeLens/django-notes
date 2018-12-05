@@ -35,7 +35,7 @@ INSTALLED_APPS = [
 
 ## Create a custom user model to override django's user model
 1. create a django app called profiles_api
-2. edit profiles_api > models.py   and use [this code](./profiles_api/models.py) 
+2. edit profiles_api > models.py   and use [this code](../profiles_api/models.py) 
 3. edit main app > settings.py and add a new line at the bottom 
     `AUTH_USER_MODEL = 'profiles_api.UserProfile'`
 4. do `python manage.py makemigrations` and `python manage.py migrate` as per my main notes
