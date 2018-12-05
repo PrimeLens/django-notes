@@ -51,7 +51,7 @@ admin.site.register(models.UserProfile)
 7. do `python manage.py runserver` and test it by login in at /admin
 
 
-## APIView
+## APIView a simple GET
 in edit main app `djangomyproj/urls.py` paste or merge in
 ```
 from django.conf.urls import include
@@ -60,20 +60,20 @@ urlpatterns = [
     # https://docs.djangoproject.com/en/1.11/topics/http/urls/
     # 'profiles_api.urls' means go to profiles_api django app and 
     # include the urls .py file from there
-    url(r'^wat/', include('profiles_api.urls')),
+    url(r'^apiview/', include('profiles_api.urls')),
 ]
 ```
-create profiles_api > urls.py 
+create `profiles_api/urls.py` 
 ```
 from django.conf.urls import url
 from . import views
 urlpatterns = [
-    # this url param matches after the one in the main urls.py so in this case it would be /wat/moo/
-    url(r'^moo/', views.HelloApiView.as_view()),
+    # this url param matches after the one in the main urls.py so in this case it would be /apiview/hello/
+    url(r'^hello/', views.HelloApiView.as_view()),
 ]
 ```
 
-in profiles_api > views.py paste
+in `profiles_api/views.py` paste
 ```
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -89,12 +89,16 @@ class HelloApiView(APIView):
         return Response({'wat': some_data})
 ```
 
-- Test the GET from the browser which will contain a header accept text/html and django will detect that and send the browser a nicely formatted page
+- Kick over the server (in case it has crashed) with `python manage.py runserver`
+- Test the GET from the browser `http://127.0.0.1:8000/apiview/hello/` 
+- The GET contains a header of accept text/html and django will detect that and send the browser a nicely formatted page
 - Test the GET from insomnia or postman and the response header will state type json and a body of json will be present as above 
 
-## Serializers convert text string of json to a python object and vice versa
+## POST and a serializer guard rail
 
-create profiles_api > serializers.py
+Serializers convert text string of json to a python object and vice versa
+
+create `profiles_api/serializers.py`
 
 ```
 from rest_framework import serializers
@@ -104,14 +108,18 @@ class HelloSerializer(serializers.Serializer):
     # http://www.django-rest-framework.org/api-guide/fields/
     name = serializers.CharField(max_length=10)
 ```
-in profiles_api > views.py paste
+in `profiles_api/views.py` edit in the following
 ```
 # for the serializer line below, this is guard rails for user input
 from . import serializers
 from rest_framework import status
-# the next part goes immediately after class HelloApiView
+```
+the next part goes immediately after class HelloApiView
+```
     serializer_class = serializers.HelloSerializer
-# then add a function at the end but within HelloApiView
+```
+then add a function at the end but indented so it is within HelloApiView
+```
     def post(self, request):
         serializer = serializers.HelloSerializer(data=request.data)
         if serializer.is_valid():
@@ -124,6 +132,9 @@ from rest_framework import status
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 ```
 
+- Kick over the server (in case it has crashed) with `python manage.py runserver`
+- test the POST at `http://127.0.0.1:8000/apiview/hello/` and in particular look for the error handling if inputting a string that is too long
+- note this is not hooked to DB
 
 
 
