@@ -30,6 +30,7 @@ source activate                Do this in project folder / bin (to activate shel
 deactivate                     Do this in project folder / bin
 source bin/activate            Or do this in project folder
 
+IMPORTANT:  make sure the virtual env is running (the prompt will change)
 Within the virtual env you can do the following (indented to show we are in the virtualenv shell)
   pip install django==1.11.16
   django-admin --version       to check django is installed
