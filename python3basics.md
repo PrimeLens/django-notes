@@ -1,9 +1,11 @@
 ## PYTHON 101 CRASH COURSE
 
-- https://pyfiddle.io/
+- I'm coming from a javascript perspective
 - a list is an array
 - a tuple is an immutable array
 - a dictionary is an object
+- an ordered dict is a collection
+- https://pyfiddle.io/
 
 
 ```
