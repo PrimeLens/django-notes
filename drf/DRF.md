@@ -12,8 +12,8 @@
 
 ## DRF
 
-- pip install djangorestframework==3.7.7
-- got to settings.py an add `rest_framework` and `rest_framework.authtoken`
+- `pip install djangorestframework==3.7.7`
+- go to settings.py and add `rest_framework` and `rest_framework.authtoken`
 
 
 ```
