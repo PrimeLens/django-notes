@@ -32,11 +32,11 @@ INSTALLED_APPS = [
 1. create a django app called profiles_api<br/>
    `python manage.py startapp profiles_api`<br/>
    add `'profiles_api'` into app `INSTALLED_APPS = [...]`
-2. edit profiles_api > models.py   and use [this code](../profiles_api/models.py) 
-3. edit main app > settings.py and add a new line at the bottom 
+2. edit the new app `profiles_api/models.py` and use [this code](../profiles_api/models.py) 
+3. edit main app `djangomyproj/settings.py` and add a new line at the bottom 
     `AUTH_USER_MODEL = 'profiles_api.UserProfile'`
 4. do `python manage.py makemigrations` and `python manage.py migrate` as per my main notes
-5. edit profiles_api > admin.py 
+5. edit the new app `profiles_api/admin.py` 
 
 ```
 from . import models
@@ -52,7 +52,7 @@ admin.site.register(models.UserProfile)
 
 
 ## APIView
-in main app > urls.py paste
+in edit main app `djangomyproj/urls.py` paste or merge in
 ```
 from django.conf.urls import include
 urlpatterns = [
