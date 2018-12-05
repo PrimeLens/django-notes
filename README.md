@@ -105,7 +105,6 @@ class Item(models.Model):
     description = models.TextField(blank=True)
     # -1, 0, 1, 20
     amount = models.IntegerField(blank=True)
-    amount = models.PositiveIntegerField(blank=True)
     # 0.5, 3.14
     weight = models.DecimalField(decimal_places=2, max_digits=5, blank=True)
 ```
@@ -119,6 +118,7 @@ class Item(models.Model):
 ```
 
 ```
+    amount = models.PositiveIntegerField(blank=True)
     is_new = models.BooleanField()            # True, False
     date_sold = models.DateTimeField()        #   
     email = models.EmailField()               # george@email.com
@@ -176,11 +176,11 @@ As a side note the migrartions files are readable with the IDE
   example: `myfirstapp_item`
 
 ## Register the item model with django admin
-- open admin file in app folder `Project > App > admin.py` and then if your model class is called `Item` you would add 
+- open admin file in app folder `myfirstapp/admin.py` and then if your model class is called `Item` you would add 
 
 ```
-  from .models import Item
-  admin.site.register(Item)
+from .models import Item
+admin.site.register(Item)
 ```
 
 ## Create Super User for web interface login
@@ -197,12 +197,12 @@ As a side note the migrartions files are readable with the IDE
 ## Django out-of-the-box "List Display Page" is crap, lets fix it
 <img src="./images/4.png" width="50%"/><br/>
 
-- to make the row view more useful modify the lines from `Project > App > admin.py` so it looks like this
+- to make the row view more useful modify the lines from `myfirstapp/admin.py` so it looks like this
 
 ```
 from .models import Item 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ['title', 'description', 'weight']
+    list_display = ['title', 'description', 'amount', 'weight']
     
 admin.site.register(Item, ItemAdmin)
 ```
