@@ -104,9 +104,9 @@ class Item(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     # -1, 0, 1, 20
-    amount = models.IntegerField(blank=True)
+    amount = models.IntegerField(blank=True, default=0)
     # 0.5, 3.14
-    weight = models.DecimalField(decimal_places=2, max_digits=5, blank=True)
+    weight = models.DecimalField(decimal_places=2, max_digits=5, blank=True, default=0)
 ```
 
 ```

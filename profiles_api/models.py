@@ -51,7 +51,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Represents a "user profile" inside our system"""
     email = models.EmailField(max_length=255, unique=True)
     name  = models.CharField(max_length=255)
-   # this one is a requirement when you do a custom user model to django,  use it to disable user accounts
+    # this one is a requirement when you do a custom user model to django,  use it to disable user accounts
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     # this one is a requirement when you do a custom user model to django, use it for roles

@@ -18,12 +18,7 @@
 
 ```
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    ...
     'rest_framework',
     'rest_framework.authtoken',
 ]
@@ -34,18 +29,25 @@ INSTALLED_APPS = [
 `pip freeze > requirements.txt`
 
 ## Create a custom user model to override django's user model
-1. create a django app called profiles_api
+1. create a django app called profiles_api<br/>
+   `python manage.py startapp profiles_api`<br/>
+   add `'profiles_api'` into app `INSTALLED_APPS = [...]`
 2. edit profiles_api > models.py   and use [this code](../profiles_api/models.py) 
 3. edit main app > settings.py and add a new line at the bottom 
     `AUTH_USER_MODEL = 'profiles_api.UserProfile'`
 4. do `python manage.py makemigrations` and `python manage.py migrate` as per my main notes
-5. edit main app > admin.py 
+5. edit profiles_api > admin.py 
 
 ```
 from . import models
 admin.site.register(models.UserProfile)
 ```
-6. do `python manage.py createsuperuser`
+6. do `python manage.py createsuperuser`<br/>
+```
+    Email: aaa@aaa.com<br/>
+    Name: aaa<br/>
+    Password: Awesome1<br/>
+```
 7. do `python manage.py runserver` and test it by login in at /admin
 
 
