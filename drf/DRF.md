@@ -27,8 +27,9 @@ INSTALLED_APPS = [
 
 ## Save the required python libraries
 
-almost forgot, its a good idead to list the libs and pipe to a text file so inside `/src` so it is included in git do this<br/>
-`pip freeze > requirements.txt`
+Almost forgot, its a good idea to list the libs and pipe to a text file.<br/>
+Do this inside `/src` so it is included in git.<br/>
+Command is this `pip freeze > requirements.txt`
 
 ## Create a custom user model to override django's user model
 1. create a django app called profiles_api<br/>
