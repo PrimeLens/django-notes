@@ -183,10 +183,11 @@ As a side note the migrartions files are readable with the IDE
 - to make the row view more useful modify the lines from `Project > App > admin.py` so it looks like this
 
 ```
-  from .models import Item 
-  class ItemAdmin(admin.ModelAdmin):
+from .models import Item 
+class ItemAdmin(admin.ModelAdmin):
     list_display = ['title', 'description', 'weight']
-  admin.site.register(Item, ItemAdmin)
+    
+admin.site.register(Item, ItemAdmin)
 ```
 
 <img src="./images/5.png" width="50%"/><br/>
