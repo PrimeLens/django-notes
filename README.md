@@ -123,6 +123,17 @@ class Item(models.Model):
   # choices can set delimeters or guard rails on the values
 ```
 
+## If moving on to DRF notes then...
+
+(Because this is several study courses merged) 
+
+1. Skip "migrations" as we are altering the user table and we want to run migrations afterwards
+2. Do this "View the data in sqlitebrowser" however there will be no data to see yet
+3. Do this "Register the item model with django admin"
+4. Skip "Create Super User for web interface login" as we will do that after the user model is altered
+5. Do this "Django out-of-the-box List Display Page is crap, lets fix it"
+6. Scroll to bottom and follow the DRF link
+
 ## Migrations
 
 Adding the class in models.py doesn't create the table, to do that you need to use a migration. Migrations will add a model, add a field, remove a field or change the attributes of a field
