@@ -12,9 +12,10 @@ Python resources [link](https://github.com/codingforentrepreneurs)
 ```
 brew install python            installs python 3
 brew install python@2          installs python 2.7
-                               its hard to get homebrew to install older versions,
-                               for django 1.11 we need 3.6.7 because later versions like 3.7 will crash it
-                               so instead go here and use the macOS 64bit installer to get python 3.6.7
+                               for django 1.11 (long term support) we need python 3.6.7 
+                               later python versions like 3.7 will crash django 1.11
+                               if had trouble getting brew to install older python versions so
+                               go here and use the macOS 64bit installer to get python 3.6.7
                                https://www.python.org/downloads/release/python-367rc2/
 python3 -V                     gets version
 pip --version                  python installer of packages,  to get the version of pip
