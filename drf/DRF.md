@@ -62,10 +62,9 @@ in edit main app `djangomyproj/urls.py` paste or merge in
 ```
 from django.conf.urls import include
 urlpatterns = [
-    # the ^ means anything that starts with
     # https://docs.djangoproject.com/en/1.11/topics/http/urls/
-    # 'profiles_api.urls' means go to profiles_api django app and 
-    # include the urls .py file from there
+    # the ^ means anything that starts with
+    # 'profiles_api.urls' means go to profiles_api django app and include its own urls.py
     url(r'^apiview/', include('profiles_api.urls')),
 ]
 ```

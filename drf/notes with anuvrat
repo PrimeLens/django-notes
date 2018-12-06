@@ -2,7 +2,7 @@
 
 views.py
 - from . import models
-- from rest_framework.exceptions import APIException
+- from django.http import Http404
 - adding class ProfileView
 
 
