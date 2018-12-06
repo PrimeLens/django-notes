@@ -43,8 +43,11 @@ Command is this `pip freeze > requirements.txt`
 
 ```
 from . import models
-admin.site.register(models.UserProfile)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'is_active', 'is_staff']
+admin.site.register(models.UserProfile, UserAdmin)
 ```
+
 6. do `python manage.py createsuperuser`<br/>
 ```
     Email: aaa@aaa.com<br/>
