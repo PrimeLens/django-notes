@@ -202,7 +202,7 @@ admin.site.register(Item)
 ```
 from .models import Item 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ['title', 'description', 'amount', 'weight']
+    list_display = ['id', 'title', 'description', 'amount', 'weight']
     
 admin.site.register(Item, ItemAdmin)
 ```

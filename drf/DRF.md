@@ -44,7 +44,7 @@ Command is this `pip freeze > requirements.txt`
 ```
 from . import models
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email', 'is_active', 'is_staff']
+    list_display = ['id', 'name', 'email', 'is_active', 'is_staff']
 admin.site.register(models.UserProfile, UserAdmin)
 ```
 
