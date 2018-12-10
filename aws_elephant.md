@@ -5,6 +5,7 @@
 in the virtual env do
 ```
 pip install psycopg2
+# https://pypi.org/project/psycopg2/
 ```
 and recreate the listing `pip freeze > requirements.txt`
 
