@@ -98,10 +98,11 @@ We already edited a setting above to add myfirstapp app into the compile. If you
 ## Models
 - each app has a models.py define your classes in there
 - classes inherit from django.db.models
-
+- do NOT name your model as a plural as django adds an 's' anyway in the admin
 In `/myfirstapp/models.py` define the class like this
 
 ```
+# not plural
 class Item(models.Model):
     # CharField must have max_length
     title = models.CharField(max_length=200)
