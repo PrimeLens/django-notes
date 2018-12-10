@@ -25,7 +25,7 @@ sudo pip install virtualenv    this is virtual within the confines of a director
 virtualenv --version
 ```
 
-## PROJECT SETUP
+## Project Setup
 ```
 virtualenv -p python3.6 .      Do this in the project folder,  sets up python3 for that project
 source bin/activate            Do this in project folder (to activate shell and prompt will change)
