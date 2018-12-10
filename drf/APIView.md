@@ -86,7 +86,7 @@ class ItemSerializer(serializers.ModelSerializer):
 - The GET contains a header of accept text/html and django will detect that and send the browser a nicely formatted page
 - Test the GET from insomnia or postman and the response header will state type json and a body of json will be present as above 
 
-## POST
+## POST, PUT, PATCH, DELETE
 
 in `myfirstapp/views.py` edit in the following
 ```
@@ -94,23 +94,51 @@ in `myfirstapp/views.py` edit in the following
         serializer = serializers.ItemSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.validated_data)
+            r = Response(serializer.validated_data)
         else:
-            return Response(
-                serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            r = Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return r
 
+    # used to replace ALL fields of a record at this ID
+    def put(self, request, item_id=None):
+        try:
+            ItemQueryObj = models.Item.objects.get(id=item_id)
+        except models.Item.DoesNotExist:
+            raise Http404
+        # TO DO - to really spearate PUT from PATCH the serialize should fill in the missing fields with defaults but there is little use for PUT 
+        serializer = serializers.ItemSerializer(data=request.data)
+        if serializer.is_valid():
+            # https://github.com/encode/django-rest-framework/blob/master/rest_framework/serializers.py#L969
+            serializer.update(ItemQueryObj, serializer.validated_data)
+            r = Response(status=status.HTTP_202_ACCEPTED)
+        else:
+            r = Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return r
 
-    # used to replace all fields of a record at this ID
-    def put(self, request, pk=None):
-        return Response({'method':'put'})
 
     # used to replace some fields of a record at this ID
-    def patch(self, request, pk=None):
-        return Response({'method':'patch'})
+    def patch(self, request, item_id=None):
+        try:
+            ItemQueryObj = models.Item.objects.get(id=item_id)
+        except models.Item.DoesNotExist:
+            raise Http404
+        serializer = serializers.ItemSerializer(data=request.data, partial=True)
+        if serializer.is_valid():
+            # https://github.com/encode/django-rest-framework/blob/master/rest_framework/serializers.py#L969
+            serializer.update(ItemQueryObj, serializer.validated_data)
+            r = Response(status=status.HTTP_202_ACCEPTED)
+        else:
+            r = Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return r
 
     # used to delete record at this ID
-    def delete(self, request, pk=None):
-        return Response({'method':'delete'})
+    def delete(self, request, item_id=None):
+        try:
+            ItemQueryObj = models.Item.objects.get(id=item_id)
+        except models.Item.DoesNotExist:
+            raise Http404
+        ItemQueryObj.delete();
+        return Response(status=status.HTTP_410_GONE)
 
 ```
 
