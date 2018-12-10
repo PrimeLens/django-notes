@@ -6,7 +6,7 @@
 Install Python 3.6, Virtualenv, & Django on Mac [link](https://www.codingforentrepreneurs.com/blog/install-django-on-mac-or-linux/)<br/>
 Python resources [link](https://github.com/codingforentrepreneurs)
 
-## Basics
+## Computer Setup
 
 
 ```
@@ -23,24 +23,27 @@ pip3 --version
 pip3 install <package>
 sudo pip install virtualenv    this is virtual within the confines of a directory
 virtualenv --version
+```
 
-PROJECT SETUP
+## PROJECT SETUP
+```
 virtualenv -p python3.6 .      Do this in the project folder,  sets up python3 for that project
-source activate                Do this in project folder / bin (to activate shell and prompt will change)
-deactivate                     Do this in project folder / bin
-source bin/activate            Or do this in project folder
+source bin/activate            Do this in project folder (to activate shell and prompt will change)
+source ../bin/activate         if a level down
+deactivate                     
 
 IMPORTANT:  make sure the virtual env is running (the prompt will change)
-Within the virtual env you can do the following (indented to show we are in the virtualenv shell)
-  pip install django==1.11.16
-  django-admin --version       to check django is installed
-  mkdir src                    this is important because startproject creates a /bin which overwrite the one made by vitualenv
-  cd src                        
-  django-admin startproject djangomyproj .
+Within the virtual env you can do the following
+
+pip install django==1.11.16
+django-admin --version         to check django is installed
+mkdir src                      this is important because startproject creates a /bin and the two bin folders clash
+cd src                        
+django-admin startproject djangomyproj .
                                make sure you have the . in the above command, this starts a project called 'djangomyproj'
                                you now have manage.py and a folder called 'djangomyproj'
-  python mamage.py             runs the manage.py file and it displays a list of sub commands
-  python mamage.py <subcommand>
+python mamage.py               runs the manage.py file and it displays a list of sub commands
+python mamage.py <subcommand>
                                runs django subcommand, for example runserver 
 ```
 
