@@ -127,7 +127,10 @@ class Item(models.Model):
     pic = models.ImageField()                 # best_avatar.jpg
     owner_id = models.PositiveIntegerField(default=0)
 ```
-
+```
+    mydoc = JSONField()
+    #https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/fields/#jsonfield
+```
 
 ## If moving on to DRF notes then...
 
@@ -339,6 +342,7 @@ urlpatterns = [
 ### Further:
 - [python 101 crash course](./python3basics.md)
 - [django rest framework](./drf/DRF.md)
+- [AWS and ElephantSQL](./aws_elephant.md)
 
 ### Additional:
 Originally taken from Advanced Django by Kevin Veroneau and Matthew Nuzum (uses python 2.7 and django 1.8)<br/>
