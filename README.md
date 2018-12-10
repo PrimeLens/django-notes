@@ -134,6 +134,7 @@ class Item(models.Model):
 ```
     mydoc = JSONField()
     #https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/fields/#jsonfield
+    # if you want to use this one it will need to be changed from mysql to postgres, see AWS Elephant link below
 ```
 
 ## If moving on to DRF notes then...

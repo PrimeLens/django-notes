@@ -32,6 +32,7 @@ Do this inside `/src` so it is included in git.<br/>
 Command is this `pip freeze > requirements.txt`
 
 ## Create a custom user model to override django's user model
+We do this so that the username field during login is the users email and it is treated as unique
 1. create a django app called profiles_api<br/>
    `python manage.py startapp profiles_api`<br/>
    add `'profiles_api'` into app `INSTALLED_APPS = [...]`
