@@ -63,7 +63,7 @@ admin.site.register(models.UserProfile, UserAdmin)
 
 ## viewsets
 
-Create the lookoutapp `python manage.py startapp lookoutapp`
+[For viewsets go here LINK](./viewsets.md)
 
 
 
