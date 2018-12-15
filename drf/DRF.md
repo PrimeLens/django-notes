@@ -65,9 +65,110 @@ admin.site.register(models.UserProfile, UserAdmin)
 
 [For viewsets go here LINK](./viewsets.md)
 
+## Using a viewset to continue our profiles API
+
+1. in the main app > urls.py add the line<br/>
+`url(r'^api/', include('profiles_api.urls')),`
+2. create profiles_api > urls.py and add the following code
+
+```
+from django.conf.urls import url
+from django.conf.urls import include
+from rest_framework.routers import DefaultRouter
+from . import views
+router = DefaultRouter()
+# because UserProfileViewSet inherits from viewsets.ModelViewSet it automatically figures out base_name
+# the string 'profile' will be in the path but because the main app urls.py is first it is /api/profile/
+router.register('profile', views.UserProfileViewSet)
+urlpatterns = [
+    url(r'', include(router.urls))
+]
+```
+
+3. create profiles_api > views.py and add the following code
+
+```
+from rest_framework import viewsets
+from . import serializers
+from . import models
+# the following two are together
+from . import permissions
+from rest_framework.authentication import TokenAuthentication
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handles creating, reading and updating profiles."""
+    serializer_class = serializers.UserProfileSerializer
+    queryset = models.UserProfile.objects.all()
+    # the trailing comma is important in order to type this as a tuple
+    # the reason these are tuples is you may want to use multiple types of authentication
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (permissions.UpdateOwnProfile,)
+```
+
+4. create profiles_api > serializers.py and add the following code 
+
+```
+from rest_framework import serializers
+from . import models
 
 
+class UserProfileSerializer(serializers.ModelSerializer):
+    """A serializer for our user profile objects."""
 
+    class Meta:
+        model = models.UserProfile
+        fields = ('id', 'email', 'name', 'password', 'is_active')
+        # define extra key word arguments for our model
+        # special attributes that are predefined in the docs, get applied to password
+        # write only is set because then the API will not return the password in the GET
+        extra_kwargs = {'password': {'write_only': True}}
+
+    # this create over-rides the existing 'create' provided by serializers.ModelSerializer
+    def create(self, validated_data):
+        """Create and return a new user."""
+        # creates a new user model
+        user = models.UserProfile(
+            email=validated_data['email'],
+            name=validated_data['name']
+        )
+        # I think this is where the hashing takes place
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+```
+
+5. create profiles_api > permissions.py and add the following code
+
+```
+from rest_framework import permissions
+# https://www.django-rest-framework.org/api-guide/permissions/ 
+
+class UpdateOwnProfile(permissions.BasePermission):
+    """Allow users to edit their own profile."""
+    # this function is called every time there is a request to our API
+    def has_object_permission(self, request, view, obj):
+        """Check user is trying to edit their own profile."""
+        # if user just wants to view (GET is safe method) then we return True
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        # this allows someone to edit or delete their own account, # but what about admin editing anothers account?
+        return obj.id == request.user.id
+```
+
+## To add search filter
+
+add the following into profiles_api > views.py
+
+this import line `from rest_framework import filters`
+
+and within `class UserProfileViewSet(viewsets.ModelViewSet):` add
+
+```
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name', 'email',)
+```
+
+usage /api/profile/?search=aaa
 
 
 
