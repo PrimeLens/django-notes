@@ -155,20 +155,7 @@ class UpdateOwnProfile(permissions.BasePermission):
         return obj.id == request.user.id
 ```
 
-## To add search filter
 
-add the following into profiles_api > views.py
-
-this import line `from rest_framework import filters`
-
-and within `class UserProfileViewSet(viewsets.ModelViewSet):` add
-
-```
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('name', 'email',)
-```
-
-usage /api/profile/?search=aaa
 
 
 

@@ -21,7 +21,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-4. create admin.py
+4. create `lookoutapp/admin.py`
 
 ```
 from django.contrib import admin
@@ -142,5 +142,19 @@ class LookoutViewSet(viewsets.ViewSet):
         return Response({'http_method': 'DELETE'})
 ```
 
+## To add search filter
+
+add the following into `lookoutapp/views.py`
+
+this import line `from rest_framework import filters`
+
+and within `class LookoutViewSet` add
+
+```
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('area', 'elevation',)
+```
+
+usage /api/profile/?search=55
 
 
