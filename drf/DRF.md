@@ -155,6 +155,32 @@ class UpdateOwnProfile(permissions.BasePermission):
         return obj.id == request.user.id
 ```
 
+## Login API (and nesting an APIView in a viewset)
+
+DRF has a login API out-of-the box but it is APIView not a viewset however we can trick it so it still works with the DefaultRouter. We do this by creating a viewset that passes the request through to the ObtainAuthToken APIView
+
+edit `profiles_api/urls.py` and add 
+
+```
+# now register the login API we are creating setting the base_name because its not a ModelViewSet
+router.register('login', views.LoginViewSet, base_name='login')
+```
+
+edit `profiles_api/views.py` and add 
+
+```
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.authtoken.views import ObtainAuthToken
+
+class LoginViewSet(viewsets.ViewSet):
+    """Checks email and password and returns an auth token"""
+    serializer_class = AuthTokenSerializer
+    # replace the default create method
+    def create(self, request):
+        """Use the ObtainAuthToken APIView to validate and create a token"""
+        # call the post function of a new APIView instance and pass it the request, this will return a new token
+        return ObtainAuthToken().post(request)
+```
 
 
 
