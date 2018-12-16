@@ -182,6 +182,10 @@ class LoginViewSet(viewsets.ViewSet):
         return ObtainAuthToken().post(request)
 ```
 
+Note that when viewing this in the Django rest browser interface you will see the following and thats because you cannot call a GET on the login API only a POST
+
+<img alt="" src="../images/7.png" width="518"/>
+
 
 
 
