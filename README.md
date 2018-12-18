@@ -122,6 +122,7 @@ class Item(models.Model):
 ```
 
 ```
+    created_on = models.DateTimeField(auto_now_add=True)
     amount = models.PositiveIntegerField(blank=True)
     is_new = models.BooleanField()            # True, False
     date_sold = models.DateTimeField()        #   

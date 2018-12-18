@@ -186,6 +186,25 @@ Note that when viewing this in the Django rest browser interface you will see th
 
 <img alt="" src="../images/7.png" width="518"/>
 
+Use login POST on super user to get `2b4b914f7d1322280f12e0bf67c8586d7acd9e8e`
+
+## Using the Modheader Chrome Plugin
+
+- hit + and add a filter `*localhost*` as you dont want to wrteck other sites you browse to
+- set Request Header to `Token` and `2b4b914f7d1322280f12e0bf67c8586d7acd9e8e`
+- if you go to profiles_api and view the superuser you should have options to edit due to the token
+- if you view a different user the permissions should prevent you from editing as the token does not match
+
+
+
+<hr/>
+
+## Foreign keys
+```
+    # if creating a relation to a model in another app then prefix the name of app onto the model
+    user_profile = models.ForeignKey('profiles_api.UserProfile', on_delete=models.CASCADE)
+```
+
 
 
 
