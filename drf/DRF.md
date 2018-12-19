@@ -76,7 +76,9 @@ from django.conf.urls import url
 from django.conf.urls import include
 from rest_framework.routers import DefaultRouter
 from . import views
+
 router = DefaultRouter()
+
 # because UserProfileViewSet inherits from viewsets.ModelViewSet it automatically figures out base_name
 # the string 'profile' will be in the path but because the main app urls.py is first it is /api/profile/
 router.register('profile', views.UserProfileViewSet)
@@ -97,8 +99,10 @@ from rest_framework.authentication import TokenAuthentication
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     """Handles creating, reading and updating profiles."""
+
     serializer_class = serializers.UserProfileSerializer
     queryset = models.UserProfile.objects.all()
+
     # the trailing comma is important in order to type this as a tuple
     # the reason these are tuples is you may want to use multiple types of authentication
     authentication_classes = (TokenAuthentication,)
@@ -131,7 +135,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             name=validated_data['name']
         )
-        # I think this is where the hashing takes place
+        # where the hashing takes place
         user.set_password(validated_data['password'])
         user.save()
         return user
@@ -145,6 +149,7 @@ from rest_framework import permissions
 
 class UpdateOwnProfile(permissions.BasePermission):
     """Allow users to edit their own profile."""
+
     # this function is called every time there is a request to our API
     def has_object_permission(self, request, view, obj):
         """Check user is trying to edit their own profile."""
@@ -174,7 +179,9 @@ from rest_framework.authtoken.views import ObtainAuthToken
 
 class LoginViewSet(viewsets.ViewSet):
     """Checks email and password and returns an auth token"""
+
     serializer_class = AuthTokenSerializer
+    
     # replace the default create method
     def create(self, request):
         """Use the ObtainAuthToken APIView to validate and create a token"""
