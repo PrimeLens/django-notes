@@ -200,6 +200,9 @@ Use login POST on super user to get `2b4b914f7d1322280f12e0bf67c8586d7acd9e8e`
 <hr/>
 
 ## Foreign keys
+
+In the model simply specify models.ForeignKey() to build a relation to another table and the id of the record in that table can be recorded. Also it will be checked so an invalid id cannot be saved there with a POST.<br/>
+This is stored as a number so in the simple example of three user accounts created the following below can have lookout records with the value of 1,2,3 or null
 ```
     # if creating a relation to a model in another app then prefix the name of app onto the model
     user_profile = models.ForeignKey('profiles_api.UserProfile', on_delete=models.CASCADE)
@@ -209,7 +212,16 @@ Use login POST on super user to get `2b4b914f7d1322280f12e0bf67c8586d7acd9e8e`
     user_profile = models.ForeignKey('profiles_api.UserProfile', on_delete=models.CASCADE, blank=True, null=True)
 ```
 
+Generally you want thin views and thick serializers but in the case where you want the lookout record to be automatically created with the current logged in user then you must recognize that the serializer does not have visiblity to the request so in the viewset we must override the create method that would normally be overridden in the serializer. Do this with perform_create()
 
+- https://stackoverflow.com/questions/41094013/when-to-use-serializers-create-and-modelviewsets-create-perform-create
+- see also video 58 of the udemy course
+
+so in `lookoutapp/views.py` you would add 
+```
+    def perform_create(self, serializer):
+        serializer.save(user_profile=self.request.user)
+```
 
 
 
