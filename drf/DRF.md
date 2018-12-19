@@ -203,6 +203,8 @@ Use login POST on super user to get `2b4b914f7d1322280f12e0bf67c8586d7acd9e8e`
 ```
     # if creating a relation to a model in another app then prefix the name of app onto the model
     user_profile = models.ForeignKey('profiles_api.UserProfile', on_delete=models.CASCADE)
+    # if adding this field after the data has been created then 
+    user_profile = models.ForeignKey('profiles_api.UserProfile', on_delete=models.CASCADE, blank=True, null=True)
 ```
 
 
