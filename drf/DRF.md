@@ -244,6 +244,9 @@ so in `lookoutapp/views.py` you would add
         serializer.save(user_profile=self.request.user)
 ```
 
+## Soft Delete
+
+https://stackoverflow.com/questions/44317929/overriding-djangorest-viewsets-delete-behavior
 
 
 
