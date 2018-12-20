@@ -181,7 +181,7 @@ class LoginViewSet(viewsets.ViewSet):
     """Checks email and password and returns an auth token"""
 
     serializer_class = AuthTokenSerializer
-    
+
     # replace the default create method
     def create(self, request):
         """Use the ObtainAuthToken APIView to validate and create a token"""
@@ -202,9 +202,19 @@ Use login POST on super user to get `2b4b914f7d1322280f12e0bf67c8586d7acd9e8e`
 - if you go to profiles_api and view the superuser you should have options to edit due to the token
 - if you view a different user the permissions should prevent you from editing as the token does not match
 
+## Permissions - prevent anyone seeing the users list unless they are logged in
 
-
-<hr/>
+edit `profiles_api/views.py` and add 
+```
+from rest_framework.permissions import IsAuthenticated
+    permission_classes = (IsAuthenticated,)
+```
+now when making a GET request it will return 401 Unauthorized unless you are logged in<br/>
+optionally you may want to allow GET for non logged in users and PATCH for those that are logged in
+```
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+```
 
 ## Foreign keys
 
@@ -229,8 +239,6 @@ so in `lookoutapp/views.py` you would add
     def perform_create(self, serializer):
         serializer.save(user_profile=self.request.user)
 ```
-
-
 
 
 
