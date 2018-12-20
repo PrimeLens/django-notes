@@ -215,6 +215,10 @@ optionally you may want to allow GET for non logged in users and PATCH for those
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
     permission_classes = (IsAuthenticatedOrReadOnly,)
 ```
+this can be combined with the permission we wrote earler to prevent a user editing other users profiles 
+```
+permission_classes = (permissions.UpdateOwnProfile, IsAuthenticated)
+```
 
 ## Foreign keys
 

@@ -102,7 +102,7 @@ We already edited a setting above to add myfirstapp app into the compile. If you
 In `/myfirstapp/models.py` define the class like this
 
 ```
-# not plural
+# not plural (Item not Items)
 class Item(models.Model):
     # CharField must have max_length
     title = models.CharField(max_length=200)
@@ -122,7 +122,6 @@ class Item(models.Model):
 ```
 
 ```
-    created_on = models.DateTimeField(auto_now_add=True)
     amount = models.PositiveIntegerField(blank=True)
     is_new = models.BooleanField()            # True, False
     date_sold = models.DateTimeField()        #   
@@ -132,10 +131,21 @@ class Item(models.Model):
     pic = models.ImageField()                 # best_avatar.jpg
     owner_id = models.PositiveIntegerField(default=0)
 ```
+postgres JSONField
 ```
     mydoc = JSONField()
     #https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/fields/#jsonfield
     # if you want to use this one it will need to be changed from mysql to postgres, see AWS Elephant link below
+```
+Automatically add date during insert
+```
+    created_on = models.DateTimeField(auto_now_add=True)
+```
+Indexing for fields that wil be frequently filtered or sorted (db_index=True)
+```
+    # https://stackoverflow.com/questions/14786413/add-indexes-db-index-true/14786447
+    # https://stackoverflow.com/questions/41496690/django-adding-db-index-to-existing-table
+    created_on = models.DateTimeField(db_index=True, auto_now_add=True)
 ```
 
 ## If moving on to DRF notes then...
