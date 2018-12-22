@@ -265,6 +265,8 @@ class LookoutSerializer(serializers.ModelSerializer):
         model = models.Lookout
         fields = ('id', 'name', 'area', 'elevation', 'climate', 'user_profile')
 ```
+gives us this<br/>
+<img alt="" src="../images/8.png" width="226"/>
 
 ## Soft Delete
 
