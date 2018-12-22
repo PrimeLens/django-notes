@@ -223,7 +223,8 @@ permission_classes = (permissions.UpdateOwnProfile, IsAuthenticated)
 ## Foreign keys
 
 In the model simply specify models.ForeignKey() to build a relation to another table and the id of the record in that table can be recorded. Also it will be checked so an invalid id cannot be saved there with a POST.<br/>
-This is stored as a number so in the simple example of three user accounts created the following below can have lookout records with the value of 1,2,3 or null
+This is stored as a number so in the simple example of three user accounts created the following below can have lookout records with the value of 1,2,3 or null<br/>
+in `lookoutapp/models.py` add
 ```
     # if creating a relation to a model in another app then prefix the name of app onto the model
     user_profile = models.ForeignKey('profiles_api.UserProfile', on_delete=models.CASCADE)
@@ -242,6 +243,27 @@ so in `lookoutapp/views.py` you would add
 ```
     def perform_create(self, serializer):
         serializer.save(user_profile=self.request.user)
+```
+
+## Foreign keys and nested serializer
+
+In the above example the users id number will be recorded in the user_profile foreign key field of the lookout record<br/>
+But if we want something more useful such as the user's name, id and other things we can do this because its a foreign key using a nested serializer<br/>
+in `profiles_api/serializers.py` add
+```
+class UserProfileSerializerLite(serializers.ModelSerializer):
+    class Meta:
+        model = models.UserProfile
+        fields = ('id', 'email', 'name')
+```
+in `lookoutapp/serializers.py` change it to
+```
+from profiles_api.serializers import UserProfileSerializerLite
+class LookoutSerializer(serializers.ModelSerializer):
+    user_profile = UserProfileSerializerLite(read_only=True)
+    class Meta:
+        model = models.Lookout
+        fields = ('id', 'name', 'area', 'elevation', 'climate', 'user_profile')
 ```
 
 ## Soft Delete
