@@ -331,7 +331,7 @@ TEMPLATES = [
 from django.shortcuts import render
 def home_page(request):
     data = {
-      "message" : "I need to go to the corner store"
+        "message" : "I need to go to the corner store"
     }
     return render(request, "home_page.html", data)
 ```
@@ -349,11 +349,21 @@ urlpatterns = [
 ```
 - templates > home_page.html should contain `<p>{{message}}</p>`
 - there are ways to loop within the template and filter etc using pipe `|`
+- here are some quick ways to get dynamic data onto a server side template
 
 ```
-  {% for item in items %}
-    <p>{{  item.title }}</p>
-  {% endfor %}
+# myfirstapp/views.py
+from .models import Item
+itemsList = Item.objects.all()
+def home_page(request):
+    data = { 
+        "items" : itemsList
+    }
+    return render(request, "home_page.html", data)
+# templates/home_page.html
+{% for item in items %}
+  <p>{{  item.title }}</p>
+{% endfor %}
 ```
 
 
