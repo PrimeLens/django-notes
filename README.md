@@ -133,9 +133,12 @@ class Item(models.Model):
 ```
 postgres JSONField
 ```
+    # models.py must import JSONField
+    from django.contrib.postgres.fields import JSONField
+    # declare in the model
     mydoc = JSONField()
-    #https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/fields/#jsonfield
-    # if you want to use this one it will need to be changed from mysql to postgres, see AWS Elephant link below
+    # https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/fields/#jsonfield
+    # DB will need to be changed from mysql to postgres, see AWS Elephant link below
 ```
 Automatically add date during insert
 ```
