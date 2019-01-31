@@ -26,30 +26,44 @@ virtualenv --version
 ```
 
 ## Project Setup
+
+- Do this in the project folder, sets up python3 virtual env for that project
+- The `.` at the end is important
 ```
-virtualenv -p python3.6 .      Do this in the project folder,  sets up python3 for that project
-source bin/activate            Do this in project folder (to activate shell and prompt will change)
-source ../bin/activate         if a level down
-deactivate                     
+virtualenv -p python3.6 .
+```
+
+- mkdir /src and cd /src
+- we will work from within /src from now on
+
+
+```
+source ../bin/activate         (to activate shell and prompt will change)
+deactivate                     (to return to regular prompt)
 
 IMPORTANT:  make sure the virtual env is running (the prompt will change)
 Within the virtual env you can do the following
 
 pip install django==1.11.16
 django-admin --version         to check django is installed
-mkdir src                      this is important because startproject creates a /bin and the two bin folders clash
-cd src                        
+```
+- the next step you must be in the virt env shell _and_ in the /src directory
+- this is important because startproject creates a /bin and the two bin folders clash
+- the `.` at the end is important
+- specify the name of the application instead of djangomyproj
+- you now have manage.py and a folder called 'djangomyproj'
+
+```   
 django-admin startproject djangomyproj .
-                               make sure you have the . in the above command, this starts a project called 'djangomyproj'
-                               you now have manage.py and a folder called 'djangomyproj'
-python mamage.py               runs the manage.py file and it displays a list of sub commands
+```
+
+- Start a server at 127.0.0.1:8000 (localhost:8000) and this will work immediately after creating a project _but it kicks an error prompting a migration but thats ok_
+
+```
+python mamage.py               runs manage.py help
 python mamage.py <subcommand>
-                               runs django subcommand, for example runserver 
-```
+python manage.py runserver
 
-`python manage.py runserver` will start a server at 127.0.0.1:8000 (localhost:8000) and this will work immediately after creating a project _but it kicks an error prompting a migration but thats ok_
-
-```
 __init__.py         tells it that its a python module (often called the 'dunder' init)
 wsgi.py             used by webserver to run the proj (often called the 'wazgi' init)
 urls.py             is the config for serverside router
@@ -57,7 +71,11 @@ urls.py             is the config for serverside router
 
 ## GIT
 
-git should be from within the `src` folder and take .gitignore from [here](https://gist.github.com/LondonAppDev/66c3291e4f487ac92fcc96735e44c35e) but add
+- exit virtual env
+- make sure you are in /src
+- `git init`
+- `touch .gitignore`
+- get ignore code from [here](https://gist.github.com/LondonAppDev/66c3291e4f487ac92fcc96735e44c35e) but add
 
 ```
 # OSX
@@ -66,6 +84,7 @@ git should be from within the `src` folder and take .gitignore from [here](https
 *.DS_Store
 **/.DS_Store
 ```
+- commit the gitignore in now before mistakes are made
 
 ## PEP8 basics
 - four space indent
@@ -80,13 +99,20 @@ Django 'app' terminology. In the django world an 'app' is a folder with a set of
 
 ## Use the django subcommand to create an app in the django project
 
+- from within the virtual env run the startapp command
+
 ```
+source ../bin/activate
 python manage.py startapp myfirstapp
 ```
 
-This creates a folder within the project, but it is not yet included in the binary compile<br/>
+This creates a folder within the project, but it is not yet included in the binary compile
+
+
 <img src="./images/1.png" width="50%"/><br/>
-To include it open `djangomyproj/djangomyproj/settings.py` and scroll to `INSTALLED_APPS = [` and add myfirstapp like this, note its a square bracket in django 1.11 where it was a curved parenthesis in 1.8<br/>
+
+- To include it open `djangomyproj/djangomyproj/settings.py` and scroll to `INSTALLED_APPS = [` and add myfirstapp like this, note its a square bracket in django 1.11 where it was a curved parenthesis in 1.8
+
 <img src="./images/2.png" width="25%"/><br/>
 
 ## The django docs for settings
@@ -131,25 +157,35 @@ class Item(models.Model):
     pic = models.ImageField()                 # best_avatar.jpg
     owner_id = models.PositiveIntegerField(default=0)
 ```
-postgres JSONField
-```
-    # models.py must import JSONField
-    from django.contrib.postgres.fields import JSONField
-    # declare in the model
-    mydoc = JSONField()
-    # https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/fields/#jsonfield
-    # DB will need to be changed from mysql to postgres, see AWS Elephant link below
-```
+
 Automatically add date during insert
+
 ```
     created_on = models.DateTimeField(auto_now_add=True)
 ```
+
 Indexing for fields that wil be frequently filtered or sorted (db_index=True)
+
 ```
     # https://stackoverflow.com/questions/14786413/add-indexes-db-index-true/14786447
     # https://stackoverflow.com/questions/41496690/django-adding-db-index-to-existing-table
     created_on = models.DateTimeField(db_index=True, auto_now_add=True)
 ```
+
+Models with postgres JSONField
+
+```
+    # models.py must import JSONField
+    from django.contrib.postgres.fields import JSONField
+    # declare in the model
+    mydoc = JSONField()
+```
+- _IMPORTANT_ app will crash unless you also follow the AWS Elephant [link](./aws_elephant.md)
+  - change DB from mysql to postgres
+  - install psycopg2
+- https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/fields/#jsonfield
+
+
 
 ## If moving on to DRF notes then...
 
@@ -169,7 +205,8 @@ Migrations work by _taking a look at the current state of the DB and current sta
 As a side note the migrartions files are readable with the IDE
 
 ```
-  python manage.py makemigrations
+source ../bin/activate
+python manage.py makemigrations
 ```
 
 - generates migration files for later use, these are stored in the app folder example '/myfirstapp/0001_initial.py'
@@ -177,13 +214,13 @@ As a side note the migrartions files are readable with the IDE
 - do this from the top level above the app folder
 
 ```
-  python manage.py migrate
+python manage.py migrate
 ```
 
 - runs all migration files that have not been run yet
 
 ```
-  python manage.py showmigrations
+python manage.py showmigrations
 ```
 
 - see all the migrations for different apps and which ones have been run (unapplied migrations is the name for those that havent run yet)

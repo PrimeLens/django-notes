@@ -30,7 +30,9 @@ into
         'PORT': '5432',
     }
 ```
+
 example
+
 ```
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -41,13 +43,17 @@ example
         'PORT': '5432',
     }
 ```
+
 make sure you run migrations and create a superuser
+
 ```
+source ../bin/activate
+python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
 ```
 
-## POSTGRES STAGING, PRODUCTION AND ENV PROPERTIES
+## AWS ENV PROPERTIES WITH ELEPHANTSQL STAGING AND PRODUCTION  
 
 The above code shows a basic connection but does not solve
 - staging database vs production database
