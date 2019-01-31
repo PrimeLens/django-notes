@@ -1,6 +1,6 @@
 
 
-## ELEPHANT SQL
+## ELEPHANT SQL BASIC CONNECTION
 
 in the virtual env do
 ```
@@ -46,3 +46,44 @@ make sure you run migrations and create a superuser
 python manage.py migrate
 python manage.py createsuperuser
 ```
+
+## POSTGRES STAGING, PRODUCTION AND ENV PROPERTIES
+
+The above code shows a basic connection but does not solve
+- staging database vs production database
+- security of avoiding committing keys to git
+
+It is far better to use environment properties in AWS to hold the connection URL so 
+
+1. In /src of your project install this python library and update requirements.txt
+
+```
+pip install dj-database-url
+# https://github.com/kennethreitz/dj-database-url
+pip freeze > requirements.txt
+```
+
+2. Go to the AWS environment Configuration > Software > Environment Properties and add `db_url` as the key and the url connection string as the value. Do this for each environment
+
+3. In `settings.py` edit the DATABASES= to the following
+
+```
+import dj_database_url
+db_url = os.environ['db_url']
+DATABASES = {
+    'default': dj_database_url.parse(db_url)
+}
+``` 
+
+4. You may want to experiment with 
+```
+if !db_url:
+  db_url = 'local_host_URL_connection_string'
+```
+
+5. Another option for running locally is to prefix runserver with the env var
+``` 
+db_url=postgres://ghijklmno:aBcDeFgHiJaBcDeFgHiJaBcDeFgHiJ@pellefant.db.elephantsql.com:5432/ghijklmno python manage.py runserver
+```
+
+Reference https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-container.html
