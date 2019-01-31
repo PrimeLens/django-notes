@@ -204,6 +204,7 @@ As a side note the migrartions files are readable with the IDE
 from .models import Item
 admin.site.register(Item)
 ```
+- _make sure_ you `ctrl-c` and start the server again or the new model will not show in admin
 
 ## Create Super User for web interface login
 - user terminal to go to top level project folder, this is the folder with `manage.py` and run
