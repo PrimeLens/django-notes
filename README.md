@@ -180,6 +180,7 @@ Models with postgres JSONField
     # declare in the model
     mydoc = JSONField()
 ```
+
 - _IMPORTANT_ app will crash unless you also follow the AWS Elephant [link](./aws_elephant.md) isntructions which covers changing DB from mysql to postgres and installing psycopg2
 - Alternatively you can setup a local postgres [local postgres](./local_postgres.md) but you will still need psycopg2, I just havent combined my notes between these pages
 - https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/fields/#jsonfield
@@ -240,6 +241,7 @@ python manage.py showmigrations
 from .models import Item
 admin.site.register(Item)
 ```
+
 - _make sure_ you `ctrl-c` and start the server again or the new model will not show in admin
 
 ## Create Super User for web interface login
