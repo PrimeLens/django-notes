@@ -93,3 +93,6 @@ db_url=postgres://ghijklmno:aBcDeFgHiJaBcDeFgHiJaBcDeFgHiJ@pellefant.db.elephant
 ```
 
 Reference https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-container.html
+
+## Alternatively you can set up a local postgres
+- [local postgres](./local_postgres.md)

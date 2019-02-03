@@ -174,15 +174,14 @@ Indexing for fields that wil be frequently filtered or sorted (db_index=True)
 
 Models with postgres JSONField
 
-```
+````
     # models.py must import JSONField
     from django.contrib.postgres.fields import JSONField
     # declare in the model
     mydoc = JSONField()
 ```
-- _IMPORTANT_ app will crash unless you also follow the AWS Elephant [link](./aws_elephant.md)
-  - change DB from mysql to postgres
-  - install psycopg2
+- _IMPORTANT_ app will crash unless you also follow the AWS Elephant [link](./aws_elephant.md) isntructions which covers changing DB from mysql to postgres and installing psycopg2
+- Alternatively you can setup a local postgres [local postgres](./local_postgres.md) but you will still need psycopg2, I just havent combined my notes between these pages
 - https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/fields/#jsonfield
 
 
@@ -411,6 +410,7 @@ def home_page(request):
 - [django rest framework](./drf/DRF.md)
 - [AWS and ElephantSQL](./aws_elephant.md)
 - [import and conditional import](django_importing.md)
+- [local postgres](./local_postgres.md)
 
 ### Additional:
 Originally taken from Advanced Django by Kevin Veroneau and Matthew Nuzum (uses python 2.7 and django 1.8)<br/>
