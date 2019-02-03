@@ -174,7 +174,7 @@ Indexing for fields that wil be frequently filtered or sorted (db_index=True)
 
 Models with postgres JSONField
 
-````
+```
     # models.py must import JSONField
     from django.contrib.postgres.fields import JSONField
     # declare in the model
