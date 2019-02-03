@@ -181,7 +181,7 @@ Models with postgres JSONField
     mydoc = JSONField()
 ```
 
-- _IMPORTANT_ app will crash unless you also follow the AWS Elephant [link](./aws_elephant.md) isntructions which covers changing DB from mysql to postgres and installing psycopg2
+- _IMPORTANT_ app will crash unless you also follow the AWS Elephant [link](./aws_elephant.md) instructions which covers changing DB from mysql to postgres and installing psycopg2
 - Alternatively you can setup a local postgres [local postgres](./local_postgres.md) but you will still need psycopg2, I just havent combined my notes between these pages
 - https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/fields/#jsonfield
 
