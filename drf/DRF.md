@@ -1,4 +1,15 @@
 
+## TO DO - these notes need an overhaul
+
+These notes come from Udemy's Build a Backend REST API with Python & Django - Beginner by Mark Winterbottom, might be retired soon as it was last updated Dec 2017. Should be at this [link](https://www.udemy.com/django-python/)
+
+It seems there are two tasks going on here
+
+1. The off the shelf DRF system
+2. the customization of profiles_api provided by Mark
+
+The notes need to be divided into these two topics
+
 
 ## (optional) VirtualBox and Vagrant
 
