@@ -413,6 +413,7 @@ def home_page(request):
 - [AWS and ElephantSQL](./aws_elephant.md)
 - [import and conditional import](django_importing.md)
 - [local postgres](./local_postgres.md)
+- [css missing on admin after hosting, collect static](./collect_static.md)
 
 ### Additional:
 Originally taken from Advanced Django by Kevin Veroneau and Matthew Nuzum (uses python 2.7 and django 1.8)<br/>
