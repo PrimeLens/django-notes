@@ -72,8 +72,13 @@ admin.site.register(models.UserProfile, UserAdmin)
 
 ## Using a viewset to continue our profiles API
 
-1. in the main app > urls.py add the line<br/>
-`url(r'^api/', include('profiles_api.urls')),`
+1. in the main app > urls.py add
+
+```
+from django.conf.urls import include
+url(r'^api/', include('profiles_api.urls')),
+```
+
 2. create profiles_api > urls.py and add the following code
 
 ```
