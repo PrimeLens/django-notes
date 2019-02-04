@@ -12,8 +12,8 @@
 
 ## DRF
 
-- above the src folder do `pip install djangorestframework==3.7.7` to add to our virtual environment
 - fire up the virtual env with `source bin/activate`
+- above the src folder do `pip install djangorestframework==3.7.7` to add to our virtual environment
 - go to settings.py and add `rest_framework` and `rest_framework.authtoken`
 
 
