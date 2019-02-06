@@ -3,6 +3,7 @@
 ## viewsets
 
 1. Create the lookoutapp `python manage.py startapp lookoutapp`
+   and dont forget to add the app name `lookoutapp` to your INSTALLED_APPS = [] in settings.py
 2. create a model
 
 ```
@@ -64,6 +65,7 @@ urlpatterns = [
 <hr/>
 
 ## Option 1: Extending classes serializers.ModelSerializer and viewsets.ModelViewSet
+- this is broken when pasted in and needs work
 - taken from https://wsvincent.com/django-rest-framework-serializers-viewsets-routers/
 - `/api/v2/lookout/` and `/api/v2/lookout/1/`
 
