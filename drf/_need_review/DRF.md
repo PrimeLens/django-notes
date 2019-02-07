@@ -195,6 +195,7 @@ router.register('login', views.LoginViewSet, base_name='login')
 edit `profiles_api/views.py` and add 
 
 ```
+from rest_framework import viewsets
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 
