@@ -60,3 +60,12 @@ class LoginViewSet(viewsets.ViewSet):
         # call the post function of a new APIView instance and pass it the request, this will return a new token
         return ObtainAuthToken().post(request)
 ```
+
+Now you can 
+- make a POST request to `http://localhost:8000/api/login/`
+- Header: 
+  - Content-Type: multipart/form-data
+- Formdata: 
+  - username: aaa
+  - password: 123456
+
