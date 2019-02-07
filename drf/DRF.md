@@ -70,7 +70,7 @@ Now you can
   - password: 123456
 
 
-# Protecting the endpoint from unauthorized access
+## Protecting the endpoint from unauthorized access
 
 Edit `lookout/views.py` and add
 
