@@ -3,6 +3,8 @@
 
 These notes come from Udemy's Build a Backend REST API with Python & Django - Beginner by Mark Winterbottom, might be retired soon as it was last updated Dec 2017. Should be at this [link](https://www.udemy.com/django-python/)
 
+Also the custom user model setup by Mark uses AbstractBaseUser not AbstractUser and as wsvincent points out in this [link](https://wsvincent.com/django-custom-user-model-tutorial/) it is a lot more work
+
 It seems there are two tasks going on here
 
 1. The off the shelf DRF system
@@ -47,7 +49,7 @@ We do this so that the username field during login is the users email and it is 
 1. create a django app called profiles_api<br/>
    `python manage.py startapp profiles_api`<br/>
    add `'profiles_api'` into app `INSTALLED_APPS = [...]`
-2. edit the new app `profiles_api/models.py` and use [this code](../profiles_api/models.py) 
+2. edit the new app `profiles_api/models.py` and use [this code](./profiles_api/models.py) 
 3. edit main app `djangomyproj/settings.py` and add a new line at the bottom
 
 ```
