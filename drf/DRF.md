@@ -25,7 +25,7 @@ Backend Interface
 - lookouts list will be https://app.mydomain.com/admin/lookout/lookout/
 
 
-## Login URL
+## Login Endpoint
 
 urls.py (can be any app that seems logical)
 
@@ -69,3 +69,21 @@ Now you can
   - username: aaa
   - password: 123456
 
+
+# Protecting the endpoint from unauthorized access
+
+Edit `lookout/views.py` and add
+
+```
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+```
+
+and into the start of the function ahead of the query
+
+```
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+```
+
+You will now need the correct header on the request
