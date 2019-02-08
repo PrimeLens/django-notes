@@ -407,13 +407,18 @@ def home_page(request):
 
 <hr/>
 
+### Extras
+
+- settings.py `TIME_ZONE = 'America/New_York'`
+- [local postgres](./local_postgres.md)
+- css missing on admin after hosting, collect static [link](./collect_static.md)
+
+
 ### Further:
 - [python 101 crash course](./python3basics.md)
 - [django rest framework](./drf/DRF.md)
 - [AWS and ElephantSQL](./aws_elephant.md)
 - [import and conditional import](django_importing.md)
-- [local postgres](./local_postgres.md)
-- [css missing on admin after hosting, collect static](./collect_static.md)
 
 ### Additional:
 Originally taken from Advanced Django by Kevin Veroneau and Matthew Nuzum (uses python 2.7 and django 1.8)<br/>
