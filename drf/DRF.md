@@ -4,6 +4,17 @@ A working app has been dropped in here as a temporary replacement.
 - copy folder into code
 - add the app in the settings.py
 
+- fire up the virtual env with `source bin/activate`
+- above the src folder do `pip install djangorestframework==3.7.7` to add to our virtual environment
+- go to settings.py and add `rest_framework` and `rest_framework.authtoken`
+
+```
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+    'rest_framework.authtoken',
+]
+```
 
 - Cors needs to be added https://pypi.org/project/django-cors-headers/<br/>
   `CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(\w+\.)?ferryworth\.com$', )`
