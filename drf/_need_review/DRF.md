@@ -217,7 +217,7 @@ class LoginViewSet(viewsets.ViewSet):
 
 Note that when viewing this in the Django rest browser interface you will see the following and thats because you cannot call a GET on the login API only a POST
 
-<img alt="" src="../images/7.png" width="518"/>
+<img alt="" src="../../images/7.png" width="518"/>
 
 Use login POST on super user to get `2b4b914f7d1322280f12e0bf67c8586d7acd9e8e`
 
