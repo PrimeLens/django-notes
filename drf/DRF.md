@@ -17,7 +17,17 @@ INSTALLED_APPS = [
 ```
 
 - Cors needs to be added https://pypi.org/project/django-cors-headers/<br/>
+  `pip install django-cors-headers`<br/>
   `CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(\w+\.)?ferryworth\.com$', )`
+
+```  
+  MIDDLEWARE = [
+      ...
+      'corsheaders.middleware.CorsMiddleware',
+      'django.middleware.common.CommonMiddleware',
+  ]
+```
+
 - `pip freeze > requirements.txt`
 - eb deploy (env name)
 

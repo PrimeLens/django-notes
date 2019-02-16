@@ -16,11 +16,14 @@ With 2.2 LTS to released in 2019 it might be best to wait
 - https://wsvincent.com/django-custom-user-model-tutorial/
 
 - https://wsvincent.com/django-login-with-email-not-username/<br/>
-  This one repeats the above tutorial so just scroll down to 'log out' and continue from there
+  - this one repeats the above tutorial so just scroll down to 'log out' and continue from there
+  - pip install django-allauth
+  - for edit on INSTALLED APPS there are 4 lines to add
+  - urlpatterns use `url(r'^accounts/', include('allauth.urls')),`
 
 https://pypi.org/project/django-simple-email-confirmation/
 
-## DRF Needs
+## DRF TO DO
 
 - Login - endpoint
 - Logout - forget the token
