@@ -64,6 +64,8 @@ AUTH_USER_MODEL = 'profiles_api.UserProfile
 from . import models
 class UserAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'email', 'is_active', 'is_staff']
+
+# register the user admin
 admin.site.register(models.UserProfile, UserAdmin)
 ```
 
