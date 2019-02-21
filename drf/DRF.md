@@ -108,3 +108,6 @@ and into the start of the function ahead of the query
 ```
 
 You will now need the correct header on the request
+
+For a continuation of auth via endpoints and an email server please see<br/>
+private repo aws-notes/aws django/aws_django_auth_anu.md
