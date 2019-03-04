@@ -73,7 +73,11 @@ pip freeze > requirements.txt
 
 3. In `settings.py` edit the DATABASES= to the following
 
-```
+``` 
+# set up local postgres as a default
+db_url = 'postgres://hello@localhost:5432/hello'
+# db_url = `postgres://ghijk:aBcDeFgHiJ@pellefant.db.elephantsql.com:5432/ghijk`
+
 # check for an environment property from AWS or other hosting
 if os.environ.get('db_url') is not None:
   db_url = os.environ['db_url']
@@ -85,17 +89,7 @@ DATABASES = {
 }
 ``` 
 
-4. You may want to experiment with 
-```
-if !db_url:
-  db_url = 'local_host_URL_connection_string'
-```
 
-5. Another option for running locally is to prefix runserver with the env var
-``` 
-db_url = 'postgres://hello@localhost:5432/hello'
-db_url = `postgres://ghijk:aBcDeFgHiJ@pellefant.db.elephantsql.com:5432/ghijk`
-```
 
 Reference https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-container.html
 
