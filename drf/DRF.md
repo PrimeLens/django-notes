@@ -48,6 +48,7 @@ CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(\w+\.)?ferryman\.com$', )
   `source ../bin/activate`
 2. `python manage.py startapp profiles_api`
 3. add the app in to INSTALLED_APPS
+
 ```
 INSTALLED_APPS = [
     ...
@@ -65,9 +66,27 @@ AUTH_USER_MODEL = 'profiles_api.UserProfile'
 ```
 
 6. Now you can do
-  - `python manage.py makemigrations`
-  - `python manage.py migrate` 
-  - `python manage.py createsuperuser`
+
+```
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+7. creating the superuser will mean that the email is provided as the username
+
+8. edit profiles_api/admin.py file
+
+```
+from . import models
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'email', 'is_active', 'is_staff']
+
+# register the user admin
+admin.site.register(models.UserProfile, UserAdmin)
+```
+
+9. test it by checking `http://localhost:8000/admin/` and going into User profiles
 
 
 ## For a continuation of auth via endpoints and an email server 
