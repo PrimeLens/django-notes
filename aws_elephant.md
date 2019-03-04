@@ -74,8 +74,12 @@ pip freeze > requirements.txt
 3. In `settings.py` edit the DATABASES= to the following
 
 ```
+# check for an environment property from AWS or other hosting
+if os.environ.get('db_url') is not None:
+  db_url = os.environ['db_url']
+
+# parse the connection string into the properties needed for django DATANASES dictionary
 import dj_database_url
-db_url = os.environ['db_url']
 DATABASES = {
     'default': dj_database_url.parse(db_url)
 }
