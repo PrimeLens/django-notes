@@ -9,5 +9,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```
 
-- then make while in the virtual environment do `python manage.py collectstatic`
+- make sure you added the above lines first<br/>
+  then make while in the virtual environment do `python manage.py collectstatic`
 - do git commits and redeploy
