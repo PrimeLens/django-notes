@@ -43,7 +43,44 @@ CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(\w+\.)?ferryman\.com$', )
 - eb deploy (env name)
 
 
-## URLS 
+## Create the profile API
+1. from the command line enter the shell<br/>
+  `source ../bin/activate`
+2. `python manage.py startapp profiles_api`
+3. add the app in to INSTALLED_APPS
+```
+INSTALLED_APPS = [
+    ...
+    # for custom users
+    'profiles_api',
+]
+```
+
+4. copy in the models file from  <a href="./profiles_api/models.py">./profiles_api/models.py</a>
+5. add this to the end of settings
+
+```
+# custom user model to override django's user model for DRF
+AUTH_USER_MODEL = 'profiles_api.UserProfile'
+```
+
+6. Now you can do
+  - `python manage.py makemigrations`
+  - `python manage.py migrate` 
+  - `python manage.py createsuperuser`
+
+
+## For a continuation of auth via endpoints and an email server 
+- please see private repo aws-notes/aws django/aws_django_auth_anu.md
+
+
+<hr/>
+<hr/>
+<hr/>
+
+
+
+## FIX - URLS 
 
 If the django app is at 
 - https://app.mydomain.com
@@ -56,18 +93,9 @@ Backend Interface
 - users list will be https://app.mydomain.com/admin/auth/user/
 - lookouts list will be https://app.mydomain.com/admin/lookout/lookout/
 
-## Create the profile API
-- from the command line enter the shell<br/>
-  `source ../bin/activate`
-- `python manage.py startapp profiles_api`
-- copy in the models file from  <a href="./profiles_api/models.py">./profiles_api/models.py</a>
-
-## For a continuation of auth via endpoints and an email server 
-- please see private repo aws-notes/aws django/aws_django_auth_anu.md
 
 
-
-## Protecting the endpoint from unauthorized access
+## FIX - Protecting the endpoint from unauthorized access
 
 Edit `lookout/views.py` and add
 
