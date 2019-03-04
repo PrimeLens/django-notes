@@ -89,7 +89,8 @@ if !db_url:
 
 5. Another option for running locally is to prefix runserver with the env var
 ``` 
-db_url=postgres://ghijklmno:aBcDeFgHiJaBcDeFgHiJaBcDeFgHiJ@pellefant.db.elephantsql.com:5432/ghijklmno python manage.py runserver
+db_url = 'postgres://hello@localhost:5432/hello'
+db_url = `postgres://ghijk:aBcDeFgHiJ@pellefant.db.elephantsql.com:5432/ghijk`
 ```
 
 Reference https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-container.html
