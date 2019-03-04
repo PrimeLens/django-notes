@@ -1,7 +1,7 @@
 This folder of notes needs review.<br/>
 A working app has been dropped in here as a temporary replacement.
 
-- copy folder into code
+- copy folder (/example_lookout_app) into code
 - add the app in the settings.py
 
 - fire up the virtual env with `source bin/activate`
