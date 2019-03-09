@@ -90,7 +90,7 @@ admin.site.register(models.UserProfile, UserAdmin)
 
 
 ## For a continuation of auth via endpoints and an email server 
-- please see private repo aws-notes/aws django/aws_django_auth_anu.md
+- please see private repo django-notes-auth-anu
 
 
 <hr/>
