@@ -47,7 +47,7 @@ CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(\w+\.)?ferryman\.com$', )
 1. from the command line enter the shell<br/>
   `source ../bin/activate`
 2. `python manage.py startapp profiles_api`
-3. add the app in to INSTALLED_APPS
+3. edit settings.py and add the app in to INSTALLED_APPS
 
 ```
 INSTALLED_APPS = [
@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 ```
 
 4. copy in the models file from  <a href="./profiles_api/models.py">./profiles_api/models.py</a>
+
 5. add this to the end of settings
 
 ```
@@ -92,48 +93,70 @@ test it by checking `http://localhost:8000/admin/` and going into User profiles
 
 ## A protected endpoint to read/update user profiles
 
+1. copy in the serializers file from  <a href="./profiles_api/serializers.py">./profiles_api/serializers.py</a>
 
+2. copy in the views file from  <a href="./profiles_api/views.py">./profiles_api/views.py</a>
+
+3. copy in the permissions file from  <a href="./profiles_api/permissions.py">./profiles_api/permissions.py</a>
+
+4. copy in the urls file from  <a href="./profiles_api/urls.py">./profiles_api/urls.py</a>
+
+5. edit the main 'urls.py' file that is in the same folder as settings.py
+- you will need to import 'include'
+- add the new url path
+
+```
+from django.conf.urls import include
+urlpatterns = [
+    ...
+    url(r'^api/', include('profiles_api.urls')),
+]
+```
+
+6. in order to protect the the API root which is api/<br/>
+   edit settings.py and add the following onto the end
+
+```
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+```
+
+
+## Test it (carefully with a temp alteration on localhost)
+
+1. test `/api/users/` to make sure its protected
+2. test `/api/` to make sure its protected
+
+This means a token will be needed to do a GET and we will not have a token until we have a /login endpoint in the next section, so...
+
+1. this is *temporary* for localhost only
+2. go to profiles_api/views.py
+3. delete IsAuthenticated from permission_classes<br/>
+   `permission_classes = (IsAuthenticated, permissions.UpdateOwnProfile,)`<br/>
+   `permission_classes = (permissions.UpdateOwnProfile,)`
+4. verify this url works in browser http://localhost:8000/api/users/
+5. change back the permission_classes before pushing to AWS
 
 ## For a continuation of auth via endpoints and an email server 
 - please see private repo django-notes-auth-anu
 
-
-<hr/>
-<hr/>
-<hr/>
-
-
-
-## FIX - URLS 
+## Summary of urls 
 
 If the django app is at 
 - https://app.mydomain.com
 
 REST endpoint will be at 
-- https://app.mydomain.com/api/v2/
+- https://app.mydomain.com/api/
 
 Backend Interface
 - login will be https://app.mydomain.com/admin
-- users list will be https://app.mydomain.com/admin/auth/user/
-- lookouts list will be https://app.mydomain.com/admin/lookout/lookout/
+- admin users list will be https://app.mydomain.com/admin/auth/user/
+- api users list will be at https://app.mydomain.com/api/users/
 
-
-
-## FIX - Protecting the endpoint from unauthorized access
-
-Edit `lookout/views.py` and add
-
-```
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
-```
-
-and into the start of the function ahead of the query
-
-```
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
-```
-
-You will now need the correct header on the request
 
