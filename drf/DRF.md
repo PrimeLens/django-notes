@@ -86,7 +86,12 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.register(models.UserProfile, UserAdmin)
 ```
 
-9. test it by checking `http://localhost:8000/admin/` and going into User profiles
+## Test it
+
+test it by checking `http://localhost:8000/admin/` and going into User profiles
+
+## A protected endpoint to read/update user profiles
+
 
 
 ## For a continuation of auth via endpoints and an email server 
