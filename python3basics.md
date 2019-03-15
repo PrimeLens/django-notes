@@ -70,3 +70,10 @@ while (x < 10):
     print(x)
     x += 1
 ```
+
+### Python ternary
+
+I'm used to `(expression) ? (value) : (value)` <br/>
+but a python ternary reads logically as use (value) if (expression true) else use (value)<br/>
+example `print('red' if (4<7) else 'blue')` 'will output red'
+
