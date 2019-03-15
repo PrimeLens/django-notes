@@ -275,6 +275,12 @@ admin.site.register(Item, ItemAdmin)
 - stands for Object Relational Mapper
 - maps database columns to python objects
 
+## Using just the python shell
+
+- from terminal type `python` and prompt goes to `>>>`
+- type `exit()`
+- it will be 2.7 but if you do it within the virtual env of the django project it will be 3.6
+
 ## Using Django shell
 - user terminal, make sure you are in top level of project, type `python manage.py shell` and prompt will now look like `>>>`
 - from the `>>>` prompt type 

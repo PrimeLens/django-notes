@@ -1,3 +1,11 @@
+
+## SHELL
+
+- from terminal type `python` and prompt goes to >>>
+- type `exit()`
+- it will be 2.7 but if you do it within the virtual env of the django project it will be 3.6
+
+
 ## PYTHON 101 CRASH COURSE
 
 - I'm coming from a javascript perspective
