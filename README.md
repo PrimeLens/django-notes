@@ -177,8 +177,9 @@ Models with postgres JSONField
 ```
     # models.py must import JSONField
     from django.contrib.postgres.fields import JSONField
-    # declare in the model
-    mydoc = JSONField()
+    # declare in the model and allow to be optional
+    # https://stackoverflow.com/questions/36209336/in-django-1-9-whats-the-convention-for-using-jsonfield-native-postgres-jsonb
+    mydoc = JSONField(blank=True, null=True)
 ```
 
 - _IMPORTANT_ app will crash unless you also follow the AWS Elephant [link](./aws_elephant.md) instructions which covers changing DB from mysql to postgres and installing psycopg2
