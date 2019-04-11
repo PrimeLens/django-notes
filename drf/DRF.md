@@ -143,7 +143,9 @@ This means a token will be needed to do a GET and we will not have a token until
 4. verify this url works in browser http://localhost:8000/api/users/
 5. change back the permission_classes before pushing to AWS
 
-## For a continuation of auth via endpoints and an email server 
+## For a continuation 
+
+- the udemy course ended here with a working DRF that had just login and protecting endpoints however this is not enough for a real world scenario as we need registration, email verification, change password and all the other stuff
 - please see private repo django-notes-auth-anu
 
 ## Summary of urls 
