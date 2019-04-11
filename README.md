@@ -162,6 +162,8 @@ Automatically add date during insert
 
 ```
     created_on = models.DateTimeField(auto_now_add=True)
+    # if not first migration will need keyword args blank=True (for the admin) and null=True (for the database)
+    created_on = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 ```
 
 Indexing for fields that wil be frequently filtered or sorted (db_index=True)
