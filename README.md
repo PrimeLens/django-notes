@@ -192,12 +192,10 @@ Models with postgres JSONField
 
 (Because this is several study courses merged) 
 
-1. Skip "migrations" as we are altering the user table and we want to run migrations afterwards
-2. Do this "View the data in sqlitebrowser" however there will be no data to see yet
-3. Do this "Register the item model with django admin"
-4. Skip "Create Super User for web interface login" as we will do that after the user model is altered
-5. Do this "Django out-of-the-box List Display Page is crap, lets fix it"
-6. Scroll to bottom and follow the DRF link
+1. Skip "migrations" as we are altering the user table and we want to run migrations afterwards, instead scroll to bottom and follow the DRF link
+2. Return back to this page after DRF is setup because 
+  - After DRF you will still need to do "Create Super User for web interface login"
+  - Any apps created after DRF will still need "Register the item model with django admin" and "Django out-of-the-box List Display Page is crap, lets fix it"
 
 ## Migrations
 
