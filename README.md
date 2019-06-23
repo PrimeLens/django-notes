@@ -425,7 +425,8 @@ def home_page(request):
 - [python 101 crash course](./python3basics.md)
 - [django rest framework](./drf/DRF.md)
 - [AWS and ElephantSQL](./aws_elephant.md)
-- [import and conditional import](django_importing.md)
+- [import and conditional import](./django_importing.md)
+- [Redoing migrations](./redo_migrations.md)
 
 ### Additional:
 Originally taken from Advanced Django by Kevin Veroneau and Matthew Nuzum (uses python 2.7 and django 1.8)<br/>
