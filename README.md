@@ -427,6 +427,8 @@ def home_page(request):
 - [AWS and ElephantSQL](./aws_elephant.md)
 - [import and conditional import](./django_importing.md)
 - [Redoing migrations](./redo_migrations.md)
+- [my AWS notes repo > django](https://github.com/PrimeLens/aws-notes/tree/master/aws%20django) (private)
+- [my private django notes repo > Email server](https://github.com/PrimeLens/django-notes-auth-anu/blob/master/email_server.md) (private) 
 
 ### Additional:
 Originally taken from Advanced Django by Kevin Veroneau and Matthew Nuzum (uses python 2.7 and django 1.8)<br/>
